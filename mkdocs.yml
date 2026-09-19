@@ -1,0 +1,160 @@
+site_name: Infraestructura para IA
+site_description: >-
+  Curso completo de infraestructura moderna para Inteligencia Artificial:
+  nube, arquitectura empresarial, datos, contenedores, MLOps, visión por
+  computadora e ingeniería de sistemas agénticos.
+site_author: Diplomado en Inteligencia Artificial
+site_url: https://danielxxi.github.io/cloud-and-IA-para-todos/
+
+repo_url: https://github.com/danielxxi/cloud-and-IA-para-todos
+repo_name: danielxxi/cloud-and-IA-para-todos
+edit_uri: edit/main/docs/
+
+copyright: >-
+  Material docente del Diplomado en Inteligencia Artificial ·
+  Distribuido bajo licencia CC BY-NC-SA 4.0
+
+theme:
+  name: material
+  language: es
+  favicon: assets/favicon.svg
+  logo: assets/logo.svg
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: "¶"
+      permalink_title: Enlace permanente a esta sección
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      lang: es
+  - tags
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/danielxxi/cloud-and-IA-para-todos
+      name: Repositorio del curso
+  generator: false
+
+nav:
+  - Inicio:
+      - index.md
+      - Cómo usar este curso: como-usar.md
+      - Guía para el docente: guia-docente.md
+      - Ruta de aprendizaje: ruta.md
+  - Módulos:
+      - modulos/index.md
+      - "Bloque I · Fundamentos de la nube":
+          - 01 · Fundamentos de la computación en la nube: modulos/01-fundamentos-nube.md
+          - 02 · Modelos de servicio (IaaS, PaaS, SaaS, FaaS): modulos/02-modelos-servicio.md
+      - "Bloque II · Arquitectura y gobierno":
+          - 03 · Arquitectura empresarial con TOGAF para IA: modulos/03-togaf-ia.md
+          - 04 · Arquitecturas cloud, seguridad y gobernanza: modulos/04-arquitectura-seguridad.md
+      - "Bloque III · Datos":
+          - 05 · Big Data, almacenamiento y procesamiento: modulos/05-big-data.md
+          - 06 · Edge Computing, Fog e IoT: modulos/06-edge-iot.md
+      - "Bloque IV · Ingeniería de plataforma":
+          - 07 · Fundamentos de Git y control de versiones: modulos/07-git.md
+          - 08 · Docker y contenedores: modulos/08-docker.md
+          - 09 · Kubernetes y orquestación: modulos/09-kubernetes.md
+          - 10 · DevOps, GitOps, MLOps y AIOps: modulos/10-devops-mlops.md
+      - "Bloque V · IA aplicada":
+          - 11 · Visión por computadora, fundamentos: modulos/11-vision-fundamentos.md
+          - 12 · Visión por computadora, aplicaciones: modulos/12-vision-aplicaciones.md
+      - "Bloque VI · Sistemas agénticos":
+          - 13 · Ingeniería de Harness para IA: modulos/13-harness-engineering.md
+          - 14 · Ingeniería de Grafos para IA: modulos/14-graph-engineering.md
+  - Prácticas:
+      - practicas/index.md
+      - P01 · Comparar modelos de servicio y costos: practicas/p01-modelos-costos.md
+      - P02 · Diseñar una arquitectura TOGAF para IA: practicas/p02-togaf.md
+      - P03 · Pipeline de datos Lake + ETL: practicas/p03-pipeline-datos.md
+      - P04 · Flujo Git colaborativo completo: practicas/p04-git-flow.md
+      - P05 · Contenerizar un modelo de IA: practicas/p05-docker-modelo.md
+      - P06 · Desplegar en Kubernetes con autoescalado: practicas/p06-kubernetes-deploy.md
+      - P07 · CI/CD y MLOps de extremo a extremo: practicas/p07-mlops.md
+      - P08 · Clasificador de visión con transfer learning: practicas/p08-vision.md
+      - P09 · Tu primer harness agéntico: practicas/p09-harness.md
+      - P10 · Dibujar tu flujo como un grafo: practicas/p10-grafo.md
+  - Recursos:
+      - recursos/index.md
+      - Glosario: recursos/glosario.md
+      - Evaluación y rúbricas: recursos/evaluacion.md
+      - Plantillas: recursos/plantillas.md
+      - Bibliografía y fuentes: recursos/bibliografia.md

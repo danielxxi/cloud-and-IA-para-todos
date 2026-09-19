@@ -1,0 +1,56 @@
+# Licencia
+
+## Material docente
+
+El contenido didáctico de este repositorio (textos, diagramas, casos, ejercicios y rúbricas, ubicados en `docs/`) se distribuye bajo:
+
+**Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)**
+
+Eres libre de:
+
+- **Compartir** — copiar y redistribuir el material en cualquier medio o formato.
+- **Adaptar** — remezclar, transformar y construir a partir del material.
+
+Bajo los siguientes términos:
+
+- **Atribución** — Debes dar crédito de manera adecuada e indicar si se realizaron cambios.
+- **NoComercial** — No puedes utilizar el material para una finalidad comercial.
+- **CompartirIgual** — Si remezclas o transformas el material, debes distribuir tu contribución bajo la misma licencia.
+
+Texto completo: <https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es>
+
+---
+
+## Código de ejemplo
+
+Los fragmentos de código, configuraciones, manifiestos y plantillas incluidos en este repositorio se distribuyen bajo licencia **MIT**:
+
+```text
+Copyright (c) 2026 Diplomado en Inteligencia Artificial
+
+Se concede permiso, libre de cargos, a cualquier persona que obtenga una copia
+de este software y de los archivos de documentación asociados (el "Software"),
+a utilizar el Software sin restricción, incluyendo sin limitación los derechos
+a usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y/o
+vender copias del Software, y a permitir a las personas a las que se les
+proporcione el Software a hacer lo mismo, sujeto a las siguientes condiciones:
+
+El aviso de copyright anterior y este aviso de permiso se incluirán en todas
+las copias o partes sustanciales del Software.
+
+EL SOFTWARE SE PROPORCIONA "COMO ESTÁ", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+IMPLÍCITA, INCLUYENDO PERO NO LIMITADA A GARANTÍAS DE COMERCIALIZACIÓN,
+IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS
+AUTORES O TITULARES DEL COPYRIGHT SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN,
+DAÑOS U OTRAS RESPONSABILIDADES, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O
+CUALQUIER OTRO MOTIVO, DERIVADAS DE, FUERA DE O EN CONEXIÓN CON EL SOFTWARE O
+SU USO U OTRO TIPO DE ACCIONES EN EL SOFTWARE.
+```
+
+---
+
+## Atribuciones
+
+- El formato y el enfoque pedagógico de este curso se inspiran en [Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/es/) (WalkingLabs). Ese repositorio es únicamente una referencia de estilo y **no ha sido modificado** de ninguna forma.
+- Las fuentes primarias citadas en cada módulo conservan sus licencias respectivas. Ver [Bibliografía](docs/recursos/bibliografia.md).
+- Las marcas mencionadas (TOGAF, ArchiMate, Docker, Kubernetes, entre otras) pertenecen a sus respectivos titulares.
