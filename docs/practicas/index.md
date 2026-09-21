@@ -3,11 +3,18 @@
 Diez laboratorios encadenados. El artefacto de cada uno alimenta al siguiente, de modo que al terminar tengas un sistema completo y no diez ejercicios sueltos.
 
 ```mermaid
-flowchart LR
-    P01["P01<br/>Costos"] --> P02["P02<br/>TOGAF"] --> P03["P03<br/>Pipeline"]
-    P03 --> P04["P04<br/>Git flow"] --> P05["P05<br/>Contenerizar"]
-    P05 --> P06["P06<br/>Kubernetes"] --> P07["P07<br/>MLOps"]
-    P07 --> P08["P08<br/>Visión"] --> P09["P09<br/>Harness"] --> P10["P10<br/>Grafo"]
+flowchart TB
+    subgraph FILA1["Diseño y empaquetado"]
+        direction LR
+        P01["P01<br/>Costos"] --> P02["P02<br/>TOGAF"] --> P03["P03<br/>Pipeline"]
+        P03 --> P04["P04<br/>Git flow"] --> P05["P05<br/>Contenerizar"]
+    end
+    subgraph FILA2["Despliegue y operación"]
+        direction LR
+        P06["P06<br/>Kubernetes"] --> P07["P07<br/>MLOps"] --> P08["P08<br/>Visión"]
+        P08 --> P09["P09<br/>Harness"] --> P10["P10<br/>Grafo"]
+    end
+    FILA1 --> FILA2
 ```
 
 ## El caso que atraviesa todas

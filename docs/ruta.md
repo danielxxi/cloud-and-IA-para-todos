@@ -5,7 +5,7 @@
 No todos los módulos requieren los anteriores. Este grafo muestra qué necesitas realmente antes de abrir cada capítulo.
 
 ```mermaid
-flowchart LR
+flowchart TB
     M01["01 · Nube"] --> M02["02 · Modelos de servicio"]
     M02 --> M03["03 · TOGAF para IA"]
     M02 --> M04["04 · Seguridad y gobernanza"]
@@ -66,16 +66,18 @@ flowchart LR
 Las prácticas están encadenadas: el artefacto de una alimenta la siguiente.
 
 ```mermaid
-flowchart LR
-    P01["P01 · Costos"] --> P02["P02 · TOGAF"]
-    P02 --> P03["P03 · Pipeline"]
-    P03 --> P04["P04 · Git flow"]
-    P04 --> P05["P05 · Contenerizar"]
-    P05 --> P06["P06 · Kubernetes"]
-    P06 --> P07["P07 · MLOps"]
-    P07 --> P08["P08 · Visión"]
-    P08 --> P09["P09 · Harness"]
-    P09 --> P10["P10 · Grafo"]
+flowchart TB
+    subgraph FILA1["Bloques I–IV · diseño y empaquetado"]
+        direction LR
+        P01["P01 · Costos"] --> P02["P02 · TOGAF"] --> P03["P03 · Pipeline"]
+        P03 --> P04["P04 · Git flow"] --> P05["P05 · Contenerizar"]
+    end
+    subgraph FILA2["Bloques IV–VI · despliegue y operación"]
+        direction LR
+        P06["P06 · Kubernetes"] --> P07["P07 · MLOps"] --> P08["P08 · Visión"]
+        P08 --> P09["P09 · Harness"] --> P10["P10 · Grafo"]
+    end
+    FILA1 --> FILA2
 ```
 
 Si solo puedes hacer tres: **P05**, **P06** y **P07**. Son las que convierten un modelo en un servicio desplegado y gobernado.

@@ -40,7 +40,188 @@
   font-size: 0.74rem;
 }
 
-/* Diagramas mermaid centrados */
+/* Columna de contenido más ancha: los diagramas caben sin encogerse tanto */
+@media screen and (min-width: 76.25em) {
+  .md-grid {
+    max-width: 70rem;
+  }
+}
+
+/* ==========================================================================
+   Diagramas Mermaid
+   ========================================================================== */
+
+.diagrama-marco {
+  position: relative;
+  margin: 1.2rem 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  background: var(--md-default-bg-color);
+}
+
+.diagrama-marco .mermaid {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  text-align: center;
+  scrollbar-width: thin;
+}
+
+/* Sin el marco (antes de que cargue el script) el diagrama sigue centrado */
 .mermaid {
   text-align: center;
+}
+
+.diagrama-marco.is-desbordado .mermaid {
+  text-align: left;
+}
+
+.diagrama-marco.is-desbordado::after {
+  content: "Desplaza horizontalmente o pulsa Ampliar";
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.3rem;
+  font-size: 0.6rem;
+  color: var(--md-default-fg-color--light);
+  pointer-events: none;
+}
+
+.diagrama-marco__zoom {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.35rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.62rem;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 140ms, color 140ms, border-color 140ms;
+}
+
+.diagrama-marco:hover .diagrama-marco__zoom,
+.diagrama-marco__zoom:focus-visible {
+  opacity: 1;
+}
+
+.diagrama-marco__zoom:hover,
+.diagrama-marco__zoom:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+/* En pantallas táctiles no hay hover: el botón queda siempre visible */
+@media (hover: none) {
+  .diagrama-marco__zoom {
+    opacity: 1;
+  }
+}
+
+/* --- Visor a pantalla completa ------------------------------------------- */
+
+body.diagrama-visor-abierto {
+  overflow: hidden;
+}
+
+.diagrama-visor {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--md-default-bg-color) 96%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+.diagrama-visor[hidden] {
+  display: none;
+}
+
+.diagrama-visor__barra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.diagrama-visor__accion {
+  min-width: 2rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.35rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 140ms, color 140ms;
+}
+
+.diagrama-visor__accion:hover,
+.diagrama-visor__accion:focus-visible {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.diagrama-visor__accion--cerrar {
+  margin-left: 0.8rem;
+}
+
+.diagrama-visor__nivel {
+  min-width: 3.4rem;
+  text-align: center;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--md-default-fg-color--light);
+}
+
+.diagrama-visor__area {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+.diagrama-visor.is-arrastrando .diagrama-visor__area {
+  cursor: grabbing;
+}
+
+.diagrama-visor__lienzo {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.diagrama-visor__lienzo svg {
+  display: block;
+  max-width: none;
+}
+
+.diagrama-visor__ayuda {
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.62rem;
+  color: var(--md-default-fg-color--light);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+@media print {
+  .diagrama-marco__zoom,
+  .diagrama-marco.is-desbordado::after {
+    display: none;
+  }
+
+  .diagrama-marco .mermaid {
+    overflow: visible;
+  }
 }
