@@ -70,6 +70,7 @@ flowchart LR
     P["Planear"] --> C["Codificar"] --> B["Construir"] --> T["Probar"]
     T --> R["Publicar"] --> D["Desplegar"] --> O["Operar"] --> M["Monitorear"]
     M --> P
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Integración continua
@@ -165,6 +166,7 @@ flowchart LR
     AGENT -->|compara| CLUSTER["Clúster"]
     CLUSTER -->|estado real| AGENT
     AGENT -->|aplica diferencias| CLUSTER
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Por qué es mejor que un pipeline que ejecuta `kubectl apply`
@@ -235,6 +237,7 @@ flowchart TB
     K -->|Deriva detectada| B
     K -->|Degradación| L["Reversión"]
     L --> J
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Los tres artefactos que hay que versionar juntos
@@ -258,6 +261,7 @@ flowchart LR
     F --> S["Cálculo en línea<br/>→ almacén online"]
     B --> T["Entrenamiento"]
     S --> I["Inferencia"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 La propiedad esencial: **la lógica se escribe una sola vez** y se materializa en ambos almacenes. El almacén offline sirve conjuntos históricos correctos en el tiempo; el online sirve valores actuales con latencia de milisegundos.
@@ -352,6 +356,7 @@ flowchart TB
         N3["Impacto en el indicador objetivo"]
     end
     INFRA --> SERV --> MODEL --> NEG
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 !!! tip "La capa que casi nadie instrumenta es la de negocio"

@@ -87,6 +87,7 @@ flowchart LR
     CA -->|48 h sin regresión<br/>en métrica de negocio| P["Producción 100%"]
     S -->|No cumple| R["Rechazado"]
     CA -->|Regresión| RB["Reversión automática"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### 9. Monitoreo

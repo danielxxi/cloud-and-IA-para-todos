@@ -40,6 +40,7 @@ flowchart LR
         D2 --- D3["Repositorio<br/>completo"]
     end
     L --> C --> D
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Generación | Ejemplos | Limitación que resolvió la siguiente |
@@ -102,6 +103,7 @@ flowchart TB
     T2 --> B2["blob"]
     TAG --> C
     C -.padre.-> C2["commit anterior"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Objeto | Qué contiene | Qué NO contiene |
@@ -152,6 +154,7 @@ flowchart LR
     REPO -->|git checkout / restore| WD
     IDX -->|git restore --staged| WD
     REPO -->|git reset| IDX
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 El área de preparación es la parte que más confunde a quien viene de otros sistemas, y también la más útil: permite **componer un commit deliberadamente** en lugar de subir todo lo que cambiaste.
@@ -609,6 +612,7 @@ flowchart LR
     E --> G["Revisión + CI"]
     G --> H["Merge a main"]
     H --> I["Registro de modelo<br/>con hash del commit"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 **Lo más valioso que ganaron:** el punto F. Registrar los experimentos que **no** funcionaron evitó que alguien repitiera el mismo intento fallido cuatro meses después. El historial de Git se convirtió en el registro de investigación del equipo.

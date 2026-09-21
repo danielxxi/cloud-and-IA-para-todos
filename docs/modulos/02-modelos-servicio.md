@@ -35,6 +35,7 @@ flowchart TB
         C8["Almacenamiento"]
         C9["Red física"]
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 La analogía más didáctica es la pizza:
@@ -179,6 +180,7 @@ flowchart LR
     F --> S1["Escribe en base de datos"]
     F --> S2["Llama a una API"]
     F --> S3["Envía notificación"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Característica | Implicación |
@@ -275,6 +277,7 @@ flowchart TB
     B["Portabilidad media<br/>Bases de datos gestionadas de motores abiertos · Colas con protocolos estándar"]
     C["Portabilidad baja<br/>Servicios propietarios · Funciones serverless · Servicios de IA específicos"]
     A --> B --> C
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 !!! danger "Agua fría: la dependencia no es evitable, es negociable"
@@ -298,6 +301,7 @@ flowchart TD
     Q3 -->|No| Q4{"¿Necesitas portabilidad<br/>entre proveedores?"}
     Q4 -->|Sí| CaaS["CaaS — contenedores"]
     Q4 -->|No| PaaS["PaaS"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Este árbol resuelve el 80 % de los casos. El 20 % restante requiere la conversación que veremos en el [módulo 03](03-togaf-ia.md): qué capacidad de negocio estás habilitando y quién es su propietario.

@@ -37,6 +37,7 @@ flowchart TB
         CR --> C1["Bibliotecas + app A"]
         CR --> C2["Bibliotecas + app B"]
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Aspecto | Máquina virtual | Contenedor |
@@ -111,6 +112,7 @@ flowchart LR
     D --> NET["Redes"]
     D --> VOL["Volúmenes"]
     D <-->|pull / push| REG[("Registro<br/>Docker Hub · ECR · GCR")]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Componente | Responsabilidad |
@@ -152,6 +154,7 @@ flowchart TB
     L3["+ código de la aplicación (2 MB)"]
     RW["Capa escribible del contenedor (efímera)"]
     L0 --> L1 --> L2 --> L3 --> RW
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Las capas son **compartidas y cacheadas**:

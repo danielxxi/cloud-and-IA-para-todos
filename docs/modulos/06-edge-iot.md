@@ -57,6 +57,7 @@ flowchart LR
     F["NIEBLA<br/>Nodo regional<br/>10–50 ms · alto"]
     C["NUBE<br/>Región<br/>50–300 ms · ilimitado"]
     D <--> E <--> F <--> C
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Capa | Dónde está | Cómputo | Qué hace |
@@ -89,6 +90,7 @@ flowchart TD
     Q3 -->|Sí| Q4{"¿Hay restricción<br/>de privacidad?"}
     Q4 -->|Sí| E3["Procesar local,<br/>subir solo resultados"]
     Q4 -->|No| C["Enviar a la nube"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 !!! tip "La regla del 1 %"
@@ -112,6 +114,7 @@ flowchart LR
     MCU --> COM["Comunicación<br/>WiFi, LoRa, celular"]
     PWR["Energía<br/>batería o red"] --> MCU
     MCU --> SEC["Seguridad<br/>elemento seguro,<br/>arranque verificado"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Las cuatro restricciones que lo condicionan todo
@@ -146,6 +149,7 @@ flowchart LR
     B -->|suscrito a<br/>planta/+/temp| S1["Panel de control"]
     B -->|suscrito a<br/>planta/#| S2["Almacén de datos"]
     B -->|suscrito a<br/>planta/linea1/vib| S3["Modelo predictivo"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Concepto | Función |
@@ -290,6 +294,7 @@ flowchart TB
     D2 -->|solo gradientes| A
     D3 -->|solo gradientes| A
     A --> S
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Los datos nunca salen del dispositivo; solo viajan actualizaciones del modelo. Es la técnica que permite entrenar sobre datos sensibles distribuidos —teclados, dispositivos médicos, imágenes clínicas de múltiples hospitales— cumpliendo restricciones de privacidad.

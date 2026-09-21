@@ -16,6 +16,7 @@ flowchart TB
         P08 --> P09["P09<br/>Harness"] --> P10["P10<br/>Grafo"]
     end
     FILA1 --> FILA2
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ## El caso que atraviesa todas
