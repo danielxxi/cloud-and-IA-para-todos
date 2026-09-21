@@ -342,6 +342,8 @@ body[data-md-color-scheme="slate"][data-md-color-primary="black"] {
   --dg-borde-fuerte: #b9b1a1;
   --dg-texto: #1c1b19;
   --dg-texto-sec: #6b665d;
+  /* Tinta de las etiquetas de los gráficos: café oscuro, en ambos esquemas. */
+  --dg-texto-grafico: #6b3a1f;
   --dg-linea: #8d8676;
 
   --dg-clay: #c15f3c;
@@ -425,11 +427,11 @@ body[data-md-color-scheme="slate"][data-md-color-primary="black"] {
   border: 1px solid var(--dg-borde-fuerte);
   border-radius: 0.35rem;
   background: var(--dg-tarjeta);
-  color: var(--dg-texto-sec);
+  color: var(--dg-texto-grafico);
   font-size: 0.62rem;
   font-weight: 600;
   cursor: pointer;
-  opacity: 0;
+  opacity: 0.85;
   transition: opacity 140ms, color 140ms, border-color 140ms;
 }
 
@@ -569,7 +571,7 @@ body.diagrama-visor-abierto {
 .md-typeset svg tspan,
 .diagrama-visor__lienzo text,
 .diagrama-visor__lienzo tspan {
-  fill: var(--dg-texto) !important;
+  fill: var(--dg-texto-grafico) !important;
 }
 
 /* Las etiquetas de los nodos son HTML dentro de <foreignObject>, anidado en
@@ -578,7 +580,7 @@ body.diagrama-visor-abierto {
 .md-typeset svg foreignObject *,
 .diagrama-visor__lienzo foreignObject,
 .diagrama-visor__lienzo foreignObject * {
-  color: var(--dg-texto) !important;
+  color: var(--dg-texto-grafico) !important;
 }
 
 .md-typeset svg .node rect,
@@ -609,7 +611,7 @@ body.diagrama-visor-abierto {
 
 .md-typeset svg .cluster text,
 .diagrama-visor__lienzo .cluster text {
-  fill: var(--dg-texto-sec) !important;
+  fill: var(--dg-texto-grafico) !important;
   font-weight: 600;
 }
 
