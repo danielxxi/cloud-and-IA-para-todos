@@ -204,7 +204,7 @@
     document.querySelectorAll(".md-typeset svg").forEach(function (svg) {
       if (svg.getAttribute("data-tinta") === "1") return;
       var etiquetas = svg.querySelectorAll("text, tspan");
-      var cajas = svg.querySelectorAll("foreignObject div, foreignObject span");
+      var cajas = svg.querySelectorAll("foreignObject *");
       if (!etiquetas.length && !cajas.length) return;
 
       etiquetas.forEach(function (nodo) {

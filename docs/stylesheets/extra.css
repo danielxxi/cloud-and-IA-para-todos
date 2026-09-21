@@ -572,13 +572,12 @@ body.diagrama-visor-abierto {
   fill: var(--dg-texto) !important;
 }
 
-.md-typeset svg foreignObject div,
-.md-typeset svg foreignObject span,
-.md-typeset svg .nodeLabel,
-.md-typeset svg .edgeLabel,
-.diagrama-visor__lienzo .nodeLabel,
-.diagrama-visor__lienzo .edgeLabel,
-.diagrama-visor__lienzo foreignObject div {
+/* Las etiquetas de los nodos son HTML dentro de <foreignObject>, anidado en
+   varios niveles (div > span > p): hay que alcanzar cualquier descendiente. */
+.md-typeset svg foreignObject,
+.md-typeset svg foreignObject *,
+.diagrama-visor__lienzo foreignObject,
+.diagrama-visor__lienzo foreignObject * {
   color: var(--dg-texto) !important;
 }
 
