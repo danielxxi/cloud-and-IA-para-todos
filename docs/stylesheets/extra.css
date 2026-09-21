@@ -562,26 +562,29 @@ body.diagrama-visor-abierto {
   color: var(--dg-texto);
 }
 
-.mermaid text,
-.mermaid tspan,
+/* El lienzo de los diagramas es claro en ambos esquemas, así que la tinta es
+   siempre oscura. Sin depender de .mermaid: tras renderizar, Mermaid deja el
+   SVG en un contenedor propio y ese selector deja de coincidir. */
+.md-typeset svg text,
+.md-typeset svg tspan,
 .diagrama-visor__lienzo text,
 .diagrama-visor__lienzo tspan {
   fill: var(--dg-texto) !important;
 }
 
-.mermaid .nodeLabel,
-.mermaid .edgeLabel,
-.mermaid foreignObject div,
-.diagrama-visor__lienzo .nodeLabel,
-.diagrama-visor__lienzo .edgeLabel,
-.diagrama-visor__lienzo foreignObject div {
+/* Las etiquetas de los nodos son HTML dentro de <foreignObject>, anidado en
+   varios niveles (div > span > p): hay que alcanzar cualquier descendiente. */
+.md-typeset svg foreignObject,
+.md-typeset svg foreignObject *,
+.diagrama-visor__lienzo foreignObject,
+.diagrama-visor__lienzo foreignObject * {
   color: var(--dg-texto) !important;
 }
 
-.mermaid .node rect,
-.mermaid .node circle,
-.mermaid .node ellipse,
-.mermaid .node path,
+.md-typeset svg .node rect,
+.md-typeset svg .node circle,
+.md-typeset svg .node ellipse,
+.md-typeset svg .node path,
 .diagrama-visor__lienzo .node rect,
 .diagrama-visor__lienzo .node circle,
 .diagrama-visor__lienzo .node ellipse,
@@ -592,42 +595,42 @@ body.diagrama-visor-abierto {
 }
 
 /* Los rombos de decisión llevan el acento */
-.mermaid .node polygon,
+.md-typeset svg .node polygon,
 .diagrama-visor__lienzo .node polygon {
   fill: var(--dg-manila) !important;
   stroke: var(--dg-clay) !important;
 }
 
-.mermaid .cluster rect,
+.md-typeset svg .cluster rect,
 .diagrama-visor__lienzo .cluster rect {
   fill: var(--dg-tarjeta-alt) !important;
   stroke: var(--dg-borde) !important;
 }
 
-.mermaid .cluster text,
+.md-typeset svg .cluster text,
 .diagrama-visor__lienzo .cluster text {
   fill: var(--dg-texto-sec) !important;
   font-weight: 600;
 }
 
-.mermaid .edgePath .path,
-.mermaid .flowchart-link,
+.md-typeset svg .edgePath .path,
+.md-typeset svg .flowchart-link,
 .diagrama-visor__lienzo .edgePath .path,
 .diagrama-visor__lienzo .flowchart-link {
   stroke: var(--dg-linea) !important;
   stroke-width: 1.5px !important;
 }
 
-.mermaid marker path,
-.mermaid .arrowheadPath,
+.md-typeset svg marker path,
+.md-typeset svg .arrowheadPath,
 .diagrama-visor__lienzo marker path,
 .diagrama-visor__lienzo .arrowheadPath {
   fill: var(--dg-linea) !important;
   stroke: none !important;
 }
 
-.mermaid .edgeLabel rect,
-.mermaid .labelBkg,
+.md-typeset svg .edgeLabel rect,
+.md-typeset svg .labelBkg,
 .diagrama-visor__lienzo .edgeLabel rect,
 .diagrama-visor__lienzo .labelBkg {
   fill: var(--dg-lienzo) !important;
@@ -635,68 +638,19 @@ body.diagrama-visor-abierto {
   opacity: 1 !important;
 }
 
-/* Líneas de tiempo y diagramas por secciones: seis tintes apagados */
-.mermaid [class*="section-0"] rect,
-.mermaid .cScale0,
-.diagrama-visor__lienzo [class*="section-0"] rect,
-.diagrama-visor__lienzo .cScale0 {
-  fill: var(--dg-manila) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid [class*="section-1"] rect,
-.mermaid .cScale1,
-.diagrama-visor__lienzo [class*="section-1"] rect,
-.diagrama-visor__lienzo .cScale1 {
-  fill: var(--dg-salvia) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid [class*="section-2"] rect,
-.mermaid .cScale2,
-.diagrama-visor__lienzo [class*="section-2"] rect,
-.diagrama-visor__lienzo .cScale2 {
-  fill: var(--dg-cielo) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid [class*="section-3"] rect,
-.mermaid .cScale3,
-.diagrama-visor__lienzo [class*="section-3"] rect,
-.diagrama-visor__lienzo .cScale3 {
-  fill: var(--dg-kraft) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid [class*="section-4"] rect,
-.mermaid .cScale4,
-.diagrama-visor__lienzo [class*="section-4"] rect,
-.diagrama-visor__lienzo .cScale4 {
-  fill: var(--dg-brezo) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid [class*="section-5"] rect,
-.mermaid .cScale5,
-.diagrama-visor__lienzo [class*="section-5"] rect,
-.diagrama-visor__lienzo .cScale5 {
-  fill: var(--dg-tarjeta-alt) !important;
-  stroke: var(--dg-borde-fuerte) !important;
-}
-
-.mermaid .commit-label,
+.md-typeset svg .commit-label,
 .diagrama-visor__lienzo .commit-label {
   fill: var(--dg-texto) !important;
 }
 
-.mermaid .statediagram-state rect,
+.md-typeset svg .statediagram-state rect,
 .diagrama-visor__lienzo .statediagram-state rect {
   fill: var(--dg-tarjeta) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.mermaid .pieTitleText,
-.mermaid .slice,
+.md-typeset svg .pieTitleText,
+.md-typeset svg .slice,
 .diagrama-visor__lienzo .pieTitleText,
 .diagrama-visor__lienzo .slice {
   fill: var(--dg-texto) !important;

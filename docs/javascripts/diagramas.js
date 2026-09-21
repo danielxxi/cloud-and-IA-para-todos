@@ -195,11 +195,34 @@
     marco.appendChild(boton);
   }
 
+  // Refuerzo del CSS: si alguna versión de Mermaid gana la especificidad con sus
+  // estilos internos, esto fija la tinta sobre el nodo ya renderizado. El lienzo
+  // de los diagramas es claro en ambos esquemas, así que siempre va oscura.
+  var TINTA = "#1c1b19";
+
+  function pintarTextos() {
+    document.querySelectorAll(".md-typeset svg").forEach(function (svg) {
+      if (svg.getAttribute("data-tinta") === "1") return;
+      var etiquetas = svg.querySelectorAll("text, tspan");
+      var cajas = svg.querySelectorAll("foreignObject *");
+      if (!etiquetas.length && !cajas.length) return;
+
+      etiquetas.forEach(function (nodo) {
+        nodo.style.setProperty("fill", TINTA, "important");
+      });
+      cajas.forEach(function (nodo) {
+        nodo.style.setProperty("color", TINTA, "important");
+      });
+      svg.setAttribute("data-tinta", "1");
+    });
+  }
+
   function escanear() {
     document.querySelectorAll(".mermaid").forEach(function (nodo) {
       if (nodo.closest(".diagrama-marco")) return;
       preparar(nodo);
     });
+    pintarTextos();
   }
 
   function vigilar() {
