@@ -27,15 +27,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: deep purple
+      primary: white
+      accent: deep orange
       toggle:
         icon: material/weather-night
         name: Cambiar a modo oscuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: deep purple
+      primary: black
+      accent: deep orange
       toggle:
         icon: material/weather-sunny
         name: Cambiar a modo claro
@@ -59,6 +59,7 @@ theme:
     - content.action.edit
 
 extra_css:
+  - https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=swap
   - stylesheets/extra.css
 
 extra_javascript:

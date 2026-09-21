@@ -1,10 +1,341 @@
-:root {
-  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+/* ==========================================================================
+   Tema cálido inspirado en la identidad visual de Anthropic.
 
-  /* Paleta cálida de diagramas, al estilo de los gráficos de Anthropic.
-     Los rellenos son siempre claros para que el texto oscuro contraste
-     igual en modo claro y en modo oscuro. */
+   Tres decisiones lo definen:
+   1. Serif para títulos sobre sans para cuerpo.
+   2. Crema y tinta templadas: nunca blanco ni negro puros.
+   3. Terracota como único acento, en enlaces y estados activos.
+   ========================================================================== */
+
+/* --- Paleta --------------------------------------------------------------- */
+
+:root {
+  /* Claros */
+  --t-crema: #f5f4ef;
+  --t-crema-alt: #edebe4;
+  --t-hueso: #fbfaf7;
+  --t-borde: #e2dfd7;
+
+  /* Oscuros */
+  --t-tinta: #1a1917;
+  --t-tinta-alt: #242320;
+  --t-tinta-borde: #33312c;
+
+  /* Texto */
+  --t-texto: #26241f;
+  --t-texto-suave: #6b6862;
+  --t-texto-inv: #edebe4;
+  --t-texto-inv-suave: #a8a49b;
+
+  /* Acento */
+  --t-terracota: #c15f3c;
+  --t-terracota-hover: #a94c2d;
+  --t-terracota-claro: #e08463;
+
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --md-code-font: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --t-serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+}
+
+/* --- Modo claro ----------------------------------------------------------- */
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: var(--t-crema);
+  --md-default-fg-color: #1f1e1c;
+  --md-default-fg-color--light: var(--t-texto-suave);
+  --md-default-fg-color--lighter: #a8a49b;
+  --md-default-fg-color--lightest: var(--t-borde);
+
+  --md-typeset-color: var(--t-texto);
+  --md-typeset-a-color: var(--t-terracota);
+  --md-typeset-mark-color: #f2e2cf;
+
+  --md-primary-fg-color: var(--t-crema);
+  --md-primary-fg-color--light: var(--t-hueso);
+  --md-primary-fg-color--dark: #e8e6df;
+  --md-primary-bg-color: #1f1e1c;
+  --md-primary-bg-color--light: var(--t-texto-suave);
+
+  --md-accent-fg-color: var(--t-terracota-hover);
+  --md-accent-fg-color--transparent: rgba(193, 95, 60, 0.1);
+
+  --md-code-bg-color: var(--t-crema-alt);
+  --md-code-fg-color: #2d2b27;
+
+  --md-footer-bg-color: var(--t-crema-alt);
+  --md-footer-bg-color--dark: var(--t-borde);
+  --md-footer-fg-color: #1f1e1c;
+  --md-footer-fg-color--light: var(--t-texto-suave);
+  --md-footer-fg-color--lighter: #a8a49b;
+
+  /* Lienzo de diagramas: un punto más claro que la página, como tarjeta */
+  --dg-lienzo: var(--t-hueso);
+}
+
+/* --- Modo oscuro ---------------------------------------------------------- */
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--t-tinta);
+  --md-default-fg-color: var(--t-texto-inv);
+  --md-default-fg-color--light: var(--t-texto-inv-suave);
+  --md-default-fg-color--lighter: #6b6862;
+  --md-default-fg-color--lightest: var(--t-tinta-borde);
+
+  --md-typeset-color: #dedbd2;
+  --md-typeset-a-color: var(--t-terracota-claro);
+  --md-typeset-mark-color: #4a3a2a;
+
+  --md-primary-fg-color: var(--t-tinta);
+  --md-primary-fg-color--light: var(--t-tinta-alt);
+  --md-primary-fg-color--dark: #121110;
+  --md-primary-bg-color: var(--t-texto-inv);
+  --md-primary-bg-color--light: var(--t-texto-inv-suave);
+
+  --md-accent-fg-color: var(--t-terracota-claro);
+  --md-accent-fg-color--transparent: rgba(224, 132, 99, 0.12);
+
+  --md-code-bg-color: var(--t-tinta-alt);
+  --md-code-fg-color: #dedbd2;
+
+  --md-footer-bg-color: #141310;
+  --md-footer-bg-color--dark: #0f0e0c;
+  --md-footer-fg-color: var(--t-texto-inv);
+  --md-footer-fg-color--light: var(--t-texto-inv-suave);
+  --md-footer-fg-color--lighter: #6b6862;
+
+  /* El lienzo sigue claro: el texto de los diagramas es oscuro */
   --dg-lienzo: #f3f1ec;
+}
+
+/* Con primary white/black, Material reimpone su azul para los enlaces desde un
+   selector más específico. Estas reglas se lo ganan. */
+body[data-md-color-scheme="default"][data-md-color-primary="white"] {
+  --md-typeset-a-color: var(--t-terracota);
+  --md-accent-fg-color: var(--t-terracota-hover);
+}
+
+body[data-md-color-scheme="slate"][data-md-color-primary="black"] {
+  --md-typeset-a-color: var(--t-terracota-claro);
+  --md-accent-fg-color: var(--t-terracota-claro);
+}
+
+/* --- Tipografía ----------------------------------------------------------- */
+
+.md-typeset {
+  line-height: 1.72;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--t-serif);
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset h1 {
+  font-size: 2.25em;
+  line-height: 1.16;
+  margin: 0 0 1.1rem;
+}
+
+.md-typeset h2 {
+  font-size: 1.55em;
+  line-height: 1.25;
+  margin: 2.2rem 0 0.9rem;
+}
+
+.md-typeset h3 {
+  font-size: 1.2em;
+  line-height: 1.35;
+  margin: 1.6rem 0 0.6rem;
+}
+
+.md-typeset h4 {
+  font-size: 1.02em;
+  font-weight: 500;
+}
+
+/* Las viñetas heredan el acento */
+.md-typeset ul li::marker {
+  color: var(--md-typeset-a-color);
+}
+
+.md-typeset ol li::marker {
+  color: var(--md-default-fg-color--light);
+  font-variant-numeric: tabular-nums;
+}
+
+.md-typeset hr {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  margin: 2rem 0;
+}
+
+.md-typeset blockquote {
+  border-left: 2px solid var(--md-typeset-a-color);
+  color: var(--md-default-fg-color--light);
+  font-style: normal;
+}
+
+.md-typeset a {
+  text-decoration: none;
+  transition: color 120ms;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* --- Cabecera y navegación ------------------------------------------------ */
+
+.md-header {
+  box-shadow: none;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-header__title {
+  font-family: var(--t-serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.md-tabs {
+  border-bottom: none;
+}
+
+.md-tabs__link {
+  opacity: 0.72;
+  font-size: 0.7rem;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  opacity: 1;
+}
+
+.md-tabs__item--active .md-tabs__link {
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 0 currentColor;
+}
+
+.md-nav {
+  font-size: 0.68rem;
+}
+
+.md-nav__title {
+  font-family: var(--t-serif);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--md-default-fg-color);
+}
+
+.md-nav__link {
+  border-radius: 0.3rem;
+  padding: 0.24rem 0.45rem;
+  margin-inline-start: -0.45rem;
+  transition: background-color 120ms, color 120ms;
+}
+
+.md-nav__link:hover {
+  background: var(--md-code-bg-color);
+}
+
+.md-nav__link--active,
+.md-nav__link--active:hover {
+  background: var(--md-code-bg-color);
+  color: var(--md-typeset-a-color);
+  font-weight: 600;
+}
+
+.md-search__form {
+  border-radius: 0.4rem;
+  background: var(--md-code-bg-color);
+  box-shadow: none;
+}
+
+.md-search__form:hover {
+  background: var(--md-default-fg-color--lightest);
+}
+
+/* --- Código y tablas ------------------------------------------------------ */
+
+.md-typeset code {
+  border-radius: 0.25rem;
+  font-size: 0.82em;
+  padding: 0.12em 0.36em;
+}
+
+.md-typeset pre > code {
+  border-radius: 0.5rem;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  box-shadow: none;
+  font-size: 0.74rem;
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-code-bg-color);
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* --- Componentes propios -------------------------------------------------- */
+
+.grid.cards > ul > li {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  box-shadow: none;
+  transition: border-color 160ms, transform 160ms;
+}
+
+.grid.cards > ul > li:hover {
+  border-color: var(--md-typeset-a-color);
+  transform: translateY(-2px);
+}
+
+.modulo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1.4rem;
+  font-size: 0.68rem;
+}
+
+.modulo-meta span {
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  color: var(--md-default-fg-color--light);
+  white-space: nowrap;
+}
+
+/* Columna de contenido más ancha: los diagramas caben sin encogerse tanto */
+@media screen and (min-width: 76.25em) {
+  .md-grid {
+    max-width: 70rem;
+  }
+}
+
+/* ==========================================================================
+   Diagramas Mermaid
+   ========================================================================== */
+
+/* Paleta de diagramas: rellenos siempre claros, texto siempre oscuro, para
+   que el contraste no dependa del modo activo. */
+:root {
   --dg-tarjeta: #fbfaf7;
   --dg-tarjeta-alt: #efece4;
   --dg-borde: #d8d2c6;
@@ -13,15 +344,13 @@
   --dg-texto-sec: #6b665d;
   --dg-linea: #8d8676;
 
-  /* Acentos: terracota como único color fuerte, resto en tonos apagados */
-  --dg-clay: #cc785c;
+  --dg-clay: #c15f3c;
   --dg-kraft: #dba27f;
   --dg-manila: #ead9ba;
   --dg-salvia: #c2d4cb;
   --dg-cielo: #c6d5e4;
   --dg-brezo: #d9cbd8;
 
-  /* Variables que Material pasa a Mermaid */
   --md-mermaid-font-family: "Inter", -apple-system, sans-serif;
   --md-mermaid-edge-color: var(--dg-linea);
   --md-mermaid-node-bg-color: var(--dg-tarjeta);
@@ -48,90 +377,27 @@
   --md-mermaid-sequence-number-fg-color: #ffffff;
 }
 
-/* El acento terracota evita que la interfaz choque con los diagramas */
-:root,
-[data-md-color-scheme="default"],
-[data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #b9603f;
-  --md-primary-fg-color--light: var(--dg-kraft);
-  --md-primary-fg-color--dark: #93402a;
-  --md-accent-fg-color: #b9603f;
-}
-
-[data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #2a2724;
-  --md-accent-fg-color: var(--dg-kraft);
-}
-
-/* Tarjetas de la portada y de los índices */
-.grid.cards > ul > li {
-  border-radius: 0.6rem;
-  transition: border-color 160ms, box-shadow 160ms, transform 160ms;
-}
-
-.grid.cards > ul > li:hover {
-  border-color: var(--md-accent-fg-color);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-/* Cabecera de módulo */
-.modulo-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0 0 1.2rem;
-  font-size: 0.72rem;
-}
-
-.modulo-meta span {
-  background: var(--md-code-bg-color);
-  border-radius: 999px;
-  padding: 0.18rem 0.7rem;
-  white-space: nowrap;
-}
-
-/* Tablas más legibles en proyección */
-.md-typeset table:not([class]) th {
-  background: var(--md-default-fg-color--lightest);
-}
-
-.md-typeset table:not([class]) td,
-.md-typeset table:not([class]) th {
-  font-size: 0.74rem;
-}
-
-/* Columna de contenido más ancha: los diagramas caben sin encogerse tanto */
-@media screen and (min-width: 76.25em) {
-  .md-grid {
-    max-width: 70rem;
-  }
-}
-
-/* ==========================================================================
-   Diagramas Mermaid
-   ========================================================================== */
-
 .diagrama-marco {
   position: relative;
-  margin: 1.2rem 0;
-  border: 1px solid var(--dg-borde);
-  border-radius: 0.5rem;
-  /* Lienzo claro también en modo oscuro: el texto del diagrama es oscuro */
-  background: var(--dg-lienzo);
+  margin: 1.4rem 0;
 }
 
-.diagrama-marco .mermaid {
+/* El aspecto de tarjeta vive en el propio diagrama: así se ve igual aunque el
+   script no llegue a envolverlo. */
+.mermaid {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1rem;
+  margin: 1.4rem 0;
   text-align: center;
   scrollbar-width: thin;
+  background: var(--dg-lienzo);
+  border: 1px solid var(--dg-borde);
+  border-radius: 0.5rem;
 }
 
-/* Sin el marco (antes de que cargue el script) el diagrama sigue centrado */
-.mermaid {
-  text-align: center;
+.diagrama-marco .mermaid {
+  margin: 0;
 }
 
 .diagrama-marco.is-desbordado .mermaid {
@@ -185,7 +451,7 @@
   }
 }
 
-/* --- Visor a pantalla completa ------------------------------------------- */
+/* --- Visor a pantalla completa -------------------------------------------- */
 
 body.diagrama-visor-abierto {
   overflow: hidden;
@@ -197,8 +463,7 @@ body.diagrama-visor-abierto {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  background: color-mix(in srgb, var(--md-default-bg-color) 96%, transparent);
-  backdrop-filter: blur(3px);
+  background: var(--md-default-bg-color);
 }
 
 .diagrama-visor[hidden] {
@@ -284,48 +549,42 @@ body.diagrama-visor-abierto {
     display: none;
   }
 
-  .diagrama-marco .mermaid {
+  .mermaid {
     overflow: visible;
   }
 }
 
-/* ==========================================================================
-   Tema de los diagramas
-   Mermaid escribe los colores en atributos inline, de ahí los !important.
-   ========================================================================== */
+/* --- Colores del propio Mermaid ------------------------------------------- */
+/* Mermaid escribe los colores en atributos inline, de ahí los !important. */
 
-.diagrama-marco .mermaid,
+.mermaid,
 .diagrama-visor__lienzo {
   color: var(--dg-texto);
 }
 
-/* Todo el texto en casi-negro: los rellenos siempre son claros */
-.diagrama-marco .mermaid text,
-.diagrama-marco .mermaid tspan,
+.mermaid text,
+.mermaid tspan,
 .diagrama-visor__lienzo text,
 .diagrama-visor__lienzo tspan {
   fill: var(--dg-texto) !important;
 }
 
-.diagrama-marco .mermaid .nodeLabel,
-.diagrama-marco .mermaid .edgeLabel,
-.diagrama-marco .mermaid foreignObject div,
+.mermaid .nodeLabel,
+.mermaid .edgeLabel,
+.mermaid foreignObject div,
 .diagrama-visor__lienzo .nodeLabel,
 .diagrama-visor__lienzo .edgeLabel,
 .diagrama-visor__lienzo foreignObject div {
   color: var(--dg-texto) !important;
 }
 
-/* Nodos: tarjetas claras con borde cálido */
-.diagrama-marco .mermaid .node rect,
-.diagrama-marco .mermaid .node circle,
-.diagrama-marco .mermaid .node ellipse,
-.diagrama-marco .mermaid .node polygon,
-.diagrama-marco .mermaid .node path,
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node path,
 .diagrama-visor__lienzo .node rect,
 .diagrama-visor__lienzo .node circle,
 .diagrama-visor__lienzo .node ellipse,
-.diagrama-visor__lienzo .node polygon,
 .diagrama-visor__lienzo .node path {
   fill: var(--dg-tarjeta) !important;
   stroke: var(--dg-borde-fuerte) !important;
@@ -333,45 +592,42 @@ body.diagrama-visor-abierto {
 }
 
 /* Los rombos de decisión llevan el acento */
-.diagrama-marco .mermaid .node polygon,
+.mermaid .node polygon,
 .diagrama-visor__lienzo .node polygon {
   fill: var(--dg-manila) !important;
   stroke: var(--dg-clay) !important;
 }
 
-/* Subgrafos: fondo apenas más oscuro que el lienzo */
-.diagrama-marco .mermaid .cluster rect,
+.mermaid .cluster rect,
 .diagrama-visor__lienzo .cluster rect {
   fill: var(--dg-tarjeta-alt) !important;
   stroke: var(--dg-borde) !important;
 }
 
-.diagrama-marco .mermaid .cluster text,
+.mermaid .cluster text,
 .diagrama-visor__lienzo .cluster text {
   fill: var(--dg-texto-sec) !important;
   font-weight: 600;
 }
 
-/* Aristas y flechas */
-.diagrama-marco .mermaid .edgePath .path,
-.diagrama-marco .mermaid .flowchart-link,
+.mermaid .edgePath .path,
+.mermaid .flowchart-link,
 .diagrama-visor__lienzo .edgePath .path,
 .diagrama-visor__lienzo .flowchart-link {
   stroke: var(--dg-linea) !important;
   stroke-width: 1.5px !important;
 }
 
-.diagrama-marco .mermaid marker path,
-.diagrama-marco .mermaid .arrowheadPath,
+.mermaid marker path,
+.mermaid .arrowheadPath,
 .diagrama-visor__lienzo marker path,
 .diagrama-visor__lienzo .arrowheadPath {
   fill: var(--dg-linea) !important;
   stroke: none !important;
 }
 
-/* Etiquetas sobre las aristas */
-.diagrama-marco .mermaid .edgeLabel rect,
-.diagrama-marco .mermaid .labelBkg,
+.mermaid .edgeLabel rect,
+.mermaid .labelBkg,
 .diagrama-visor__lienzo .edgeLabel rect,
 .diagrama-visor__lienzo .labelBkg {
   fill: var(--dg-lienzo) !important;
@@ -379,70 +635,68 @@ body.diagrama-visor-abierto {
   opacity: 1 !important;
 }
 
-/* Línea de tiempo y diagramas por secciones: seis tintes cálidos */
-.diagrama-marco .mermaid [class*="section-0"] rect,
-.diagrama-marco .mermaid rect.cScale0,
+/* Líneas de tiempo y diagramas por secciones: seis tintes apagados */
+.mermaid [class*="section-0"] rect,
+.mermaid .cScale0,
 .diagrama-visor__lienzo [class*="section-0"] rect,
-.diagrama-visor__lienzo rect.cScale0 {
+.diagrama-visor__lienzo .cScale0 {
   fill: var(--dg-manila) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.diagrama-marco .mermaid [class*="section-1"] rect,
-.diagrama-marco .mermaid rect.cScale1,
+.mermaid [class*="section-1"] rect,
+.mermaid .cScale1,
 .diagrama-visor__lienzo [class*="section-1"] rect,
-.diagrama-visor__lienzo rect.cScale1 {
+.diagrama-visor__lienzo .cScale1 {
   fill: var(--dg-salvia) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.diagrama-marco .mermaid [class*="section-2"] rect,
-.diagrama-marco .mermaid rect.cScale2,
+.mermaid [class*="section-2"] rect,
+.mermaid .cScale2,
 .diagrama-visor__lienzo [class*="section-2"] rect,
-.diagrama-visor__lienzo rect.cScale2 {
+.diagrama-visor__lienzo .cScale2 {
   fill: var(--dg-cielo) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.diagrama-marco .mermaid [class*="section-3"] rect,
-.diagrama-marco .mermaid rect.cScale3,
+.mermaid [class*="section-3"] rect,
+.mermaid .cScale3,
 .diagrama-visor__lienzo [class*="section-3"] rect,
-.diagrama-visor__lienzo rect.cScale3 {
+.diagrama-visor__lienzo .cScale3 {
   fill: var(--dg-kraft) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.diagrama-marco .mermaid [class*="section-4"] rect,
-.diagrama-marco .mermaid rect.cScale4,
+.mermaid [class*="section-4"] rect,
+.mermaid .cScale4,
 .diagrama-visor__lienzo [class*="section-4"] rect,
-.diagrama-visor__lienzo rect.cScale4 {
+.diagrama-visor__lienzo .cScale4 {
   fill: var(--dg-brezo) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-.diagrama-marco .mermaid [class*="section-5"] rect,
-.diagrama-marco .mermaid rect.cScale5,
+.mermaid [class*="section-5"] rect,
+.mermaid .cScale5,
 .diagrama-visor__lienzo [class*="section-5"] rect,
-.diagrama-visor__lienzo rect.cScale5 {
+.diagrama-visor__lienzo .cScale5 {
   fill: var(--dg-tarjeta-alt) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-/* Git graph y diagramas de estado */
-.diagrama-marco .mermaid .commit-label,
+.mermaid .commit-label,
 .diagrama-visor__lienzo .commit-label {
   fill: var(--dg-texto) !important;
 }
 
-.diagrama-marco .mermaid .statediagram-state rect,
+.mermaid .statediagram-state rect,
 .diagrama-visor__lienzo .statediagram-state rect {
   fill: var(--dg-tarjeta) !important;
   stroke: var(--dg-borde-fuerte) !important;
 }
 
-/* Gráfico de sectores */
-.diagrama-marco .mermaid .pieTitleText,
-.diagrama-marco .mermaid .slice,
+.mermaid .pieTitleText,
+.mermaid .slice,
 .diagrama-visor__lienzo .pieTitleText,
 .diagrama-visor__lienzo .slice {
   fill: var(--dg-texto) !important;

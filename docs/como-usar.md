@@ -23,14 +23,13 @@ Cada módulo está calibrado para **una sesión de 3 horas**. La [guía para el 
 
 Reparto típico de la sesión:
 
-```mermaid
-pie showData
-    title Distribución de una sesión de 180 minutos
-    "Teoría y discusión" : 75
-    "Caso práctico guiado" : 35
-    "Laboratorio" : 50
-    "Cierre y evaluación" : 20
-```
+| Tramo | Minutos | Proporción |
+| --- | ---: | ---: |
+| Teoría y discusión | 75 | 42 % |
+| Laboratorio | 50 | 28 % |
+| Caso práctico guiado | 35 | 19 % |
+| Cierre y evaluación | 20 | 11 % |
+| **Total** | **180** | **100 %** |
 
 ## Convenciones del material
 
