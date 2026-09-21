@@ -43,6 +43,7 @@ La evolución se entiende mejor en tres etapas, separadas por dos puntos de infl
 === "1960–2002 · La idea sin la infraestructura"
 
     ```mermaid
+    %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","textColor":"#1c1b19","lineColor":"#8d8676","cScale0":"#e2a98c","cScaleLabel0":"#1c1b19","cScale1":"#bdb6e6","cScaleLabel1":"#1c1b19","cScale2":"#e8d9b6","cScaleLabel2":"#1c1b19","cScale3":"#b5d0c3","cScaleLabel3":"#1c1b19","cScale4":"#e6cfc0","cScaleLabel4":"#1c1b19","cScale5":"#cddcea","cScaleLabel5":"#1c1b19"}}}%%
     timeline
         title La nube existe como concepto, no como producto
         1960s : Tiempo compartido en mainframes
@@ -56,6 +57,7 @@ La evolución se entiende mejor en tres etapas, separadas por dos puntos de infl
 === "2006–2014 · Se construyen las capas"
 
     ```mermaid
+    %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","textColor":"#1c1b19","lineColor":"#8d8676","cScale0":"#e2a98c","cScaleLabel0":"#1c1b19","cScale1":"#bdb6e6","cScaleLabel1":"#1c1b19","cScale2":"#e8d9b6","cScaleLabel2":"#1c1b19","cScale3":"#b5d0c3","cScaleLabel3":"#1c1b19","cScale4":"#e6cfc0","cScaleLabel4":"#1c1b19","cScale5":"#cddcea","cScaleLabel5":"#1c1b19"}}}%%
     timeline
         title De la máquina virtual al contenedor
         2006 : AWS lanza S3 y EC2
@@ -70,6 +72,7 @@ La evolución se entiende mejor en tres etapas, separadas por dos puntos de infl
 === "2018–2026 · La capa de IA"
 
     ```mermaid
+    %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","textColor":"#1c1b19","lineColor":"#8d8676","cScale0":"#e2a98c","cScaleLabel0":"#1c1b19","cScale1":"#bdb6e6","cScaleLabel1":"#1c1b19","cScale2":"#e8d9b6","cScaleLabel2":"#1c1b19","cScale3":"#b5d0c3","cScaleLabel3":"#1c1b19","cScale4":"#e6cfc0","cScaleLabel4":"#1c1b19","cScale5":"#cddcea","cScaleLabel5":"#1c1b19"}}}%%
     timeline
         title El acelerador se convierte en el recurso que se alquila
         2018 : GPUs y TPUs bajo demanda para deep learning
