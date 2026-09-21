@@ -188,7 +188,10 @@
     boton.type = "button";
     boton.className = "diagrama-marco__zoom";
     boton.setAttribute("aria-label", "Ampliar diagrama");
-    boton.innerHTML = '<span aria-hidden="true">\u2922</span> Ampliar';
+    boton.innerHTML =
+      '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">' +
+      '<path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14m.5-7h-1v2H7v1h2v2h1v-2h2V9h-2z"/>' +
+      "</svg> Ampliar";
     boton.addEventListener("click", function () {
       abrir(marco.querySelector("svg"));
     });
@@ -198,7 +201,7 @@
   // Refuerzo del CSS: si alguna versión de Mermaid gana la especificidad con sus
   // estilos internos, esto fija la tinta sobre el nodo ya renderizado. El lienzo
   // de los diagramas es claro en ambos esquemas, así que siempre va oscura.
-  var TINTA = "#1c1b19";
+  var TINTA = "#6b3a1f";
 
   function pintarTextos() {
     document.querySelectorAll(".md-typeset svg").forEach(function (svg) {
@@ -217,10 +220,17 @@
     });
   }
 
+  // Cualquier SVG con etiquetas cuenta como gráfico, lleve o no la clase
+  // .mermaid: al renderizar, Mermaid sustituye el nodo original.
+  function esGrafico(svg) {
+    if (svg.closest(".diagrama-marco") || svg.closest(".diagrama-visor")) return false;
+    if (svg.closest("a") || svg.closest("button") || svg.closest(".md-icon")) return false;
+    return svg.querySelector("text, foreignObject") !== null;
+  }
+
   function escanear() {
-    document.querySelectorAll(".mermaid").forEach(function (nodo) {
-      if (nodo.closest(".diagrama-marco")) return;
-      preparar(nodo);
+    document.querySelectorAll(".md-typeset svg").forEach(function (svg) {
+      if (esGrafico(svg)) preparar(svg.parentNode);
     });
     pintarTextos();
   }

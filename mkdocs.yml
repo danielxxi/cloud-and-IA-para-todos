@@ -60,10 +60,10 @@ theme:
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=swap
-  - stylesheets/extra.css
+  - stylesheets/extra.css?v=4
 
 extra_javascript:
-  - javascripts/diagramas.js
+  - javascripts/diagramas.js?v=4
 
 markdown_extensions:
   - abbr
