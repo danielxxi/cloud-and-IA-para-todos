@@ -193,6 +193,7 @@ flowchart LR
     P3 --> F["Aplanado /<br/>pooling global"]
     F --> D["Densa + ReLU"]
     D --> O["Softmax<br/>clases"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Las capas
@@ -251,6 +252,7 @@ flowchart LR
     D --> E["Retropropagación<br/>calcular gradientes"]
     E --> F["Optimizador<br/>actualizar pesos"]
     F --> A
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Componentes
@@ -281,6 +283,7 @@ flowchart LR
         R6["Modelo más pequeño"]
     end
     S --> R
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### División de los datos

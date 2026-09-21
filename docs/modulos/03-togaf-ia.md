@@ -55,6 +55,7 @@ flowchart TB
     D --> A
     A --> T
     T -.restricciones.-> B
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Cómo se traducen a un proyecto de IA
@@ -145,6 +146,7 @@ flowchart TB
     RM -.- F
     RM -.- G
     RM -.- H
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 La **gestión de requisitos** está en el centro porque no es una fase: alimenta y recibe información de todas.
@@ -194,6 +196,7 @@ flowchart LR
     T1 --> T2["Transición 2<br/>Modelo en lote<br/>con revisión humana"]
     T2 --> T3["Transición 3<br/>Modelo en tiempo real<br/>con monitoreo"]
     T3 --> DST["Destino<br/>Decisión automática<br/>con reentrenamiento continuo"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Cada transición entrega valor. Si el proyecto se cancela en la transición 2, la organización se queda con algo que funciona. Ese es el criterio de diseño.
@@ -378,6 +381,7 @@ flowchart LR
     D --> F["Radiólogo lee<br/>y emite informe"]
     E --> F
     F --> G["Informe firmado<br/>por humano"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 El radiólogo sigue leyendo **todos** los estudios. El modelo solo altera el orden. Ninguna decisión clínica se automatiza.

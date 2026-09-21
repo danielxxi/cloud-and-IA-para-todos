@@ -39,6 +39,7 @@ flowchart TB
         P4["Seguridad física del centro de datos"]
     end
     Cliente --> Proveedor
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### El límite se mueve con el modelo de servicio
@@ -75,6 +76,7 @@ flowchart TB
         W1 & W2 --> AP["Capa de aplicación"]
         AP --> DB[("Base de datos<br/>primaria")]
         DB -.replicación.-> DBR[("Réplica")]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     **Cuándo:** aplicaciones tradicionales, migraciones lift-and-shift.
@@ -92,6 +94,7 @@ flowchart TB
         S3 --> D3[("BD pedidos")]
         S3 -.evento.-> Q["Cola"]
         Q -.-> S4["Servicio<br/>notificaciones"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     **Cuándo:** equipos múltiples, dominios con ritmos de cambio distintos.
@@ -108,6 +111,7 @@ flowchart TB
         B --> C1["Consumidor<br/>analítica"]
         B --> C2["Consumidor<br/>inferencia"]
         B --> C3["Consumidor<br/>auditoría"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     **Cuándo:** desacoplamiento temporal, múltiples consumidores del mismo hecho.
@@ -122,6 +126,7 @@ flowchart TB
         API["API Gateway"] --> F1["Función"]
         S3["Almacenamiento<br/>de objetos"] -.evento.-> F2["Función"]
         F1 & F2 --> DB[("Base de datos<br/>sin servidor")]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     **Cuándo:** cargas esporádicas, glue code, procesamiento por eventos.
@@ -161,6 +166,7 @@ flowchart TB
     L6["6 · Datos — cifrado en reposo y en tránsito, tokenización"]
     L7["7 · Detección — registro, monitoreo, respuesta"]
     L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Cifrado: los tres estados del dato
@@ -206,6 +212,7 @@ flowchart LR
         B2 -->|Autorizada| B3["Acceso mínimo<br/>y temporal"]
         B2 -->|Denegada| B4["Bloqueo + registro"]
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 !!! example "Zero Trust aplicado a un servicio de inferencia"
@@ -283,6 +290,7 @@ flowchart TB
         BZ2["Zona 2"]
     end
     R1 -.replicación asíncrona.-> R2
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 - **Múltiples zonas** protegen contra fallo de un centro de datos: incendio, corte eléctrico, inundación. Latencia entre zonas: 1–2 ms. **Debería ser el estándar para cualquier producción.**
@@ -386,6 +394,7 @@ flowchart LR
         I2 --> I3["Milisegundos"]
         I3 --> I4["Sensible a latencia<br/>Requiere capacidad reservada"]
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Esta distinción tiene consecuencias económicas directas: el entrenamiento se beneficia enormemente de instancias interrumpibles con puntos de control; la inferencia, no.
@@ -446,6 +455,7 @@ flowchart TB
     DEC -->|Cualquier otro caso| HUM["Cola de revisión humana"]
     DEC --> LOG[("Registro inmutable<br/>de inferencias")]
     APP --> DB[("Base de datos<br/>multi-zona, RPO 15 min")]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Controles de seguridad aplicados

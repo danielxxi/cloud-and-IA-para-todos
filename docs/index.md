@@ -88,6 +88,7 @@ flowchart TB
     end
 
     I --> II --> III --> IV --> V --> VI
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Se lee de abajo hacia arriba. Sin nube no hay elasticidad; sin arquitectura no hay gobierno; sin datos no hay modelo; sin plataforma el modelo no llega a producción; sin sistemas agénticos, cada mejora del modelo sigue dependiendo de que alguien esté escribiendo instrucciones a mano.

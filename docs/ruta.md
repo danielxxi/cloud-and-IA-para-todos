@@ -24,6 +24,7 @@ flowchart TB
     M07 --> M13["13 · Harness"]
     M10 --> M13
     M13 --> M14["14 · Grafos"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ## Rutas recortadas por perfil
@@ -80,6 +81,7 @@ flowchart TB
         P08 --> P09["P09 · Harness"] --> P10["P10 · Grafo"]
     end
     FILA1 --> FILA2
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Si solo puedes hacer tres: **P05**, **P06** y **P07**. Son las que convierten un modelo en un servicio desplegado y gobernado.

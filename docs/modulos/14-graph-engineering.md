@@ -61,6 +61,7 @@ flowchart LR
     A --> V{"Verificar"}
     V -->|No cumplido| A
     V -->|Cumplido| S["Salir"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Funciona sorprendentemente bien para una clase amplia de tareas. Su límite aparece con la complejidad.
@@ -119,6 +120,7 @@ flowchart TB
     N2 -->|arista| N3
     N3 -->|routing: pasa| N4
     N3 -->|routing: falla| N2
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Nodo
@@ -258,6 +260,7 @@ Primero la columna principal determinista.
 %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","darkMode":false,"background":"#f3f1ec","mainBkg":"#fbfaf7","primaryColor":"#fbfaf7","primaryTextColor":"#1c1b19","primaryBorderColor":"#b9b1a1","secondaryColor":"#ead9ba","secondaryTextColor":"#1c1b19","secondaryBorderColor":"#b9b1a1","tertiaryColor":"#c2d4cb","tertiaryTextColor":"#1c1b19","tertiaryBorderColor":"#b9b1a1","lineColor":"#8d8676","textColor":"#1c1b19","nodeTextColor":"#1c1b19","nodeBorder":"#b9b1a1","labelTextColor":"#1c1b19","titleColor":"#1c1b19","edgeLabelBackground":"#f3f1ec","clusterBkg":"#efece4","clusterBorder":"#d8d2c6","cScale0":"#e2a98c","cScaleLabel0":"#1c1b19","cScale1":"#bdb6e6","cScaleLabel1":"#1c1b19","cScale2":"#e8d9b6","cScaleLabel2":"#1c1b19","cScale3":"#b5d0c3","cScaleLabel3":"#1c1b19","cScale4":"#e6cfc0","cScaleLabel4":"#1c1b19","cScale5":"#cddcea","cScaleLabel5":"#1c1b19"}}}%%
 flowchart LR
     I["Inicio"] --> R["investigar"] --> IM["implementar"] --> V["verificar"] --> M["integrar"] --> F["Fin"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Paso 4 · Escribe las reglas de enrutamiento
@@ -279,6 +282,7 @@ flowchart LR
     V -->|falla · intentos < 3| IM
     V -->|falla · intentos >= 3| R
     IM -.falta información.-> R
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Este paso hace explícito "a dónde vuelve una prueba fallida". En un loop único esa arista es **implícita**: el propio agente recuerda en su contexto que debería volver atrás — o no lo recuerda.
@@ -321,6 +325,7 @@ Cinco patrones que, dibujados, resultan ser grafos con formas distintas.
     %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","darkMode":false,"background":"#f3f1ec","mainBkg":"#fbfaf7","primaryColor":"#fbfaf7","primaryTextColor":"#1c1b19","primaryBorderColor":"#b9b1a1","secondaryColor":"#ead9ba","secondaryTextColor":"#1c1b19","secondaryBorderColor":"#b9b1a1","tertiaryColor":"#c2d4cb","tertiaryTextColor":"#1c1b19","tertiaryBorderColor":"#b9b1a1","lineColor":"#8d8676","textColor":"#1c1b19","nodeTextColor":"#1c1b19","nodeBorder":"#b9b1a1","labelTextColor":"#1c1b19","titleColor":"#1c1b19","edgeLabelBackground":"#f3f1ec","clusterBkg":"#efece4","clusterBorder":"#d8d2c6","cScale0":"#e2a98c","cScaleLabel0":"#1c1b19","cScale1":"#bdb6e6","cScaleLabel1":"#1c1b19","cScale2":"#e8d9b6","cScaleLabel2":"#1c1b19","cScale3":"#b5d0c3","cScaleLabel3":"#1c1b19","cScale4":"#e6cfc0","cScaleLabel4":"#1c1b19","cScale5":"#cddcea","cScaleLabel5":"#1c1b19"}}}%%
     flowchart LR
         A["Extraer"] --> B["Transformar"] --> C["Resumir"] --> D["Formatear"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     Cada nodo mejora la salida del anterior. Útil cuando la tarea se descompone en pasos secuenciales claros.
@@ -333,6 +338,7 @@ Cinco patrones que, dibujados, resultan ser grafos con formas distintas.
         C{"Clasificar<br/>la petición"} -->|Técnica| T["Agente técnico"]
         C -->|Facturación| F["Agente de facturación"]
         C -->|No clasificable| H["Humano"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     Un nodo clasifica y despacha al especialista adecuado. Cada especialista puede usar un modelo distinto y más barato.
@@ -346,6 +352,7 @@ Cinco patrones que, dibujados, resultan ser grafos con formas distintas.
         E --> B["Análisis de rendimiento"]
         E --> C["Análisis de estilo"]
         A & B & C --> AG["Agregador"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     Tres perspectivas independientes sobre el mismo material. Requiere definir la regla de fusión del estado.
@@ -359,6 +366,7 @@ Cinco patrones que, dibujados, resultan ser grafos con formas distintas.
         O --> W2["Trabajador 2"]
         O --> W3["Trabajador 3"]
         W1 & W2 & W3 --> S["Síntesis"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     El orquestador decide **en tiempo de ejecución** cuántos trabajadores y de qué tipo. A diferencia de la paralelización fija, la descomposición no se conoce de antemano.
@@ -371,6 +379,7 @@ Cinco patrones que, dibujados, resultan ser grafos con formas distintas.
         G["Generar"] --> E{"Evaluar<br/>contexto nuevo"}
         E -->|Insuficiente + crítica| G
         E -->|Suficiente| S["Salida"]
+        classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
     ```
 
     El patrón más valioso cuando existe un criterio de calidad claro y la mejora iterativa aporta. Es el maker-checker elevado a estructura.
@@ -502,6 +511,7 @@ flowchart TB
     APR -->|No| MER["integrar<br/>código: merge + actualizar estado"]
     HUM --> MER
     MER --> FIN["Fin"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### El estado compartido

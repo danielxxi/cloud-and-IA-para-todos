@@ -42,6 +42,7 @@ flowchart TB
     A["El agente falla"] --> B["1 · Amnesia entre sesiones<br/>Cada ventana de contexto<br/>empieza sin memoria"]
     A --> C["2 · Ausencia de verificación<br/>independiente<br/>Quien hace evalúa su propio trabajo"]
     A --> D["3 · Entorno subespecificado<br/>Lo que no está escrito,<br/>el agente lo inventa"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 **Amnesia.** Imagina un proyecto de software con ingenieros trabajando por turnos, donde cada turno llega sin ningún recuerdo del anterior. Esa es exactamente la situación de un agente entre ventanas de contexto. La compactación de contexto ayuda, pero no basta: no siempre transmite instrucciones claras a la siguiente sesión.
@@ -80,6 +81,7 @@ flowchart TB
     FIX --> RUN
     VER -->|Pasa| HAND["Limpieza y traspaso<br/>progreso.md · commit"]
     HAND --> OBJ
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Los cinco componentes
@@ -302,6 +304,7 @@ flowchart LR
     I --> V{"Agente verificador<br/>CONTEXTO NUEVO<br/>revisión independiente<br/>+ ejecutar pruebas"}
     V -->|Falla| I
     V -->|Pasa| S["Salida"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 La propiedad esencial del verificador: **contexto completamente nuevo**. No ve el razonamiento del implementador, solo ve el resultado. Ahí es donde la revisión deja de ser una formalidad.

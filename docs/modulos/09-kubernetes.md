@@ -37,6 +37,7 @@ flowchart LR
     A --> R
     C -->|Coinciden| W["Esperar y repetir"]
     W --> C
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Este bucle de reconciliación corre indefinidamente. Si matas un Pod, aparece otro. Si un nodo se apaga, sus cargas se reprograman en otro. No porque alguien lo ordene: porque el estado real dejó de coincidir con el deseado.
@@ -104,6 +105,7 @@ flowchart TB
     end
     API <--> K1
     API <--> K2
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Plano de control
@@ -144,6 +146,7 @@ flowchart TB
         INIT -.escribe.-> VOL
         MAIN -.lee.-> VOL
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Patrones de varios contenedores
@@ -405,6 +408,7 @@ flowchart LR
     PVC["PersistentVolumeClaim<br/>'necesito 100 Gi, ReadWriteOnce'"] --> SC["StorageClass<br/>'ssd-rapido'"]
     SC -->|aprovisiona| PV["PersistentVolume<br/>disco real del proveedor"]
     PV --> POD["Pod"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Modo de acceso | Significado |
@@ -602,6 +606,7 @@ flowchart TD
     C -->|Running pero no listo| G["readinessProbe falla<br/>kubectl describe → eventos de sonda"]
     C -->|OOMKilled| H["Límite de memoria insuficiente"]
     C -->|Running y listo| I["El problema está en red<br/>Service · NetworkPolicy · Ingress"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ---

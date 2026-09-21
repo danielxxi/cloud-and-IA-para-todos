@@ -244,6 +244,7 @@ flowchart TB
     H --> I["Producción + monitoreo<br/>calidad · deriva · costo · negocio"]
     I -->|Deriva| C
     I -->|Degradación| J["Reversión"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Optimización de la inferencia

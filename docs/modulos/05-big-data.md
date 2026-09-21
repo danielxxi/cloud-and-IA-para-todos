@@ -64,6 +64,7 @@ flowchart LR
     BATCH --> SERVE["Capa de servicio<br/>Vistas unificadas"]
     SPEED --> SERVE
     SERVE --> C["Consumidores"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 **Ventaja:** tolerante a errores. Si la lógica de streaming falla, el lote corrige.
@@ -82,6 +83,7 @@ flowchart LR
     STREAM --> SERVE["Vistas materializadas"]
     SERVE --> C["Consumidores"]
     LOG -.reproceso desde el inicio.-> STREAM
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 **Ventaja:** una sola base de código, un solo modelo mental.
@@ -188,6 +190,7 @@ flowchart LR
     subgraph ELT["ELT — moderno"]
         E2["Extraer"] --> L2["Cargar<br/>crudo"] --> T2["Transformar<br/>dentro del almacén"]
     end
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 | Criterio | ETL | ELT |
@@ -215,6 +218,7 @@ flowchart TB
     F --> G["Agregación y modelado"]
     G --> H["Zona oro"]
     H --> I["Consumo: BI · ML · APIs"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 Cinco propiedades que separan una canalización profesional de un script:
@@ -365,6 +369,7 @@ flowchart TB
     RT --> FRAUD["Detección de<br/>fraude"]
     DW --> ROY["Cálculo de<br/>regalías"]
     DW --> ML["Entrenamiento<br/>de modelos"]
+    classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#1c1b19;
 ```
 
 ### Decisiones y sus razones
