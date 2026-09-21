@@ -195,30 +195,25 @@
     marco.appendChild(boton);
   }
 
-  // Mermaid escribe el color del texto dentro del propio SVG, con selectores que
-  // ganan a cualquier hoja de estilos externa. En modo claro todos los rellenos
-  // son pasteles, así que forzamos tinta oscura sobre el nodo ya renderizado.
-  var COLOR_TEXTO = "#1c1b19";
-
-  function enModoClaro() {
-    return document.body.getAttribute("data-md-color-scheme") !== "slate";
-  }
+  // Refuerzo del CSS: si alguna versión de Mermaid gana la especificidad con sus
+  // estilos internos, esto fija la tinta sobre el nodo ya renderizado. El lienzo
+  // de los diagramas es claro en ambos esquemas, así que siempre va oscura.
+  var TINTA = "#1c1b19";
 
   function pintarTextos() {
-    var claro = enModoClaro();
-    document.querySelectorAll(".md-typeset svg text, .md-typeset svg tspan").forEach(function (nodo) {
-      if (claro) {
-        nodo.style.setProperty("fill", COLOR_TEXTO, "important");
-      } else if (nodo.style.fill) {
-        nodo.style.removeProperty("fill");
-      }
-    });
-    document.querySelectorAll(".md-typeset svg foreignObject div, .md-typeset svg foreignObject span").forEach(function (nodo) {
-      if (claro) {
-        nodo.style.setProperty("color", COLOR_TEXTO, "important");
-      } else if (nodo.style.color) {
-        nodo.style.removeProperty("color");
-      }
+    document.querySelectorAll(".md-typeset svg").forEach(function (svg) {
+      if (svg.getAttribute("data-tinta") === "1") return;
+      var etiquetas = svg.querySelectorAll("text, tspan");
+      var cajas = svg.querySelectorAll("foreignObject div, foreignObject span");
+      if (!etiquetas.length && !cajas.length) return;
+
+      etiquetas.forEach(function (nodo) {
+        nodo.style.setProperty("fill", TINTA, "important");
+      });
+      cajas.forEach(function (nodo) {
+        nodo.style.setProperty("color", TINTA, "important");
+      });
+      svg.setAttribute("data-tinta", "1");
     });
   }
 
