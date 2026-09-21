@@ -38,24 +38,45 @@ Cada palabra de esa definición está elegida. "Bajo demanda" excluye los contra
 
 ## 2. Historia: cómo llegamos aquí
 
-```mermaid
-timeline
-    title Del tiempo compartido a la IA en la nube
-    1960s : Tiempo compartido en mainframes
-          : John McCarthy propone el cómputo como servicio público
-    1990s : Internet comercial
-          : Primeros proveedores de hosting
-    1999 : Salesforce entrega software por navegador (SaaS)
-    2002 : Amazon abre servicios web internos
-    2006 : AWS lanza S3 y EC2 — nace la nube moderna
-    2008 : Google App Engine (PaaS)
-    2010 : Microsoft Azure en disponibilidad general
-    2013 : Docker populariza los contenedores
-    2014 : Kubernetes (Google) y AWS Lambda (serverless)
-    2018 : GPUs y TPUs bajo demanda para deep learning
-    2023 : Modelos fundacionales como servicio gestionado
-    2026 : Infraestructura de inferencia y agentes como capa estándar
-```
+La evolución se entiende mejor en tres etapas, separadas por dos puntos de inflexión: 2006, cuando la nube se vuelve un producto, y 2018, cuando el acelerador pasa a ser el recurso que se alquila.
+
+=== "1960–2002 · La idea sin la infraestructura"
+
+    ```mermaid
+    timeline
+        title La nube existe como concepto, no como producto
+        1960s : Tiempo compartido en mainframes
+              : McCarthy propone el cómputo como servicio público
+        1990s : Internet comercial
+              : Primeros proveedores de hosting
+        1999 : Salesforce entrega software por navegador (SaaS)
+        2002 : Amazon abre sus servicios web internos
+    ```
+
+=== "2006–2014 · Se construyen las capas"
+
+    ```mermaid
+    timeline
+        title De la máquina virtual al contenedor
+        2006 : AWS lanza S3 y EC2
+             : nace la nube moderna
+        2008 : Google App Engine (PaaS)
+        2010 : Microsoft Azure en disponibilidad general
+        2013 : Docker populariza los contenedores
+        2014 : Kubernetes y AWS Lambda
+             : orquestación y serverless
+    ```
+
+=== "2018–2026 · La capa de IA"
+
+    ```mermaid
+    timeline
+        title El acelerador se convierte en el recurso que se alquila
+        2018 : GPUs y TPUs bajo demanda para deep learning
+        2023 : Modelos fundacionales como servicio gestionado
+        2026 : Infraestructura de inferencia y agentes
+             : capa estándar de la plataforma
+    ```
 
 Dos observaciones sobre esta línea de tiempo:
 
