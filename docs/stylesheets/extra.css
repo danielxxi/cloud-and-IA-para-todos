@@ -1,5 +1,66 @@
 :root {
   --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Paleta cálida de diagramas, al estilo de los gráficos de Anthropic.
+     Los rellenos son siempre claros para que el texto oscuro contraste
+     igual en modo claro y en modo oscuro. */
+  --dg-lienzo: #f3f1ec;
+  --dg-tarjeta: #fbfaf7;
+  --dg-tarjeta-alt: #efece4;
+  --dg-borde: #d8d2c6;
+  --dg-borde-fuerte: #b9b1a1;
+  --dg-texto: #1c1b19;
+  --dg-texto-sec: #6b665d;
+  --dg-linea: #8d8676;
+
+  /* Acentos: terracota como único color fuerte, resto en tonos apagados */
+  --dg-clay: #cc785c;
+  --dg-kraft: #dba27f;
+  --dg-manila: #ead9ba;
+  --dg-salvia: #c2d4cb;
+  --dg-cielo: #c6d5e4;
+  --dg-brezo: #d9cbd8;
+
+  /* Variables que Material pasa a Mermaid */
+  --md-mermaid-font-family: "Inter", -apple-system, sans-serif;
+  --md-mermaid-edge-color: var(--dg-linea);
+  --md-mermaid-node-bg-color: var(--dg-tarjeta);
+  --md-mermaid-node-fg-color: var(--dg-texto);
+  --md-mermaid-label-bg-color: var(--dg-tarjeta);
+  --md-mermaid-label-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-actor-bg-color: var(--dg-tarjeta);
+  --md-mermaid-sequence-actor-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-actor-border-color: var(--dg-clay);
+  --md-mermaid-sequence-actor-line-color: var(--dg-borde-fuerte);
+  --md-mermaid-sequence-box-bg-color: var(--dg-manila);
+  --md-mermaid-sequence-box-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-label-bg-color: var(--dg-kraft);
+  --md-mermaid-sequence-label-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-loop-bg-color: var(--dg-tarjeta-alt);
+  --md-mermaid-sequence-loop-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-loop-border-color: var(--dg-borde-fuerte);
+  --md-mermaid-sequence-message-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-message-line-color: var(--dg-linea);
+  --md-mermaid-sequence-note-bg-color: var(--dg-manila);
+  --md-mermaid-sequence-note-fg-color: var(--dg-texto);
+  --md-mermaid-sequence-note-border-color: var(--dg-borde-fuerte);
+  --md-mermaid-sequence-number-bg-color: var(--dg-clay);
+  --md-mermaid-sequence-number-fg-color: #ffffff;
+}
+
+/* El acento terracota evita que la interfaz choque con los diagramas */
+:root,
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #b9603f;
+  --md-primary-fg-color--light: var(--dg-kraft);
+  --md-primary-fg-color--dark: #93402a;
+  --md-accent-fg-color: #b9603f;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #2a2724;
+  --md-accent-fg-color: var(--dg-kraft);
 }
 
 /* Tarjetas de la portada y de los índices */
@@ -54,9 +115,10 @@
 .diagrama-marco {
   position: relative;
   margin: 1.2rem 0;
-  border: 1px solid var(--md-default-fg-color--lightest);
+  border: 1px solid var(--dg-borde);
   border-radius: 0.5rem;
-  background: var(--md-default-bg-color);
+  /* Lienzo claro también en modo oscuro: el texto del diagrama es oscuro */
+  background: var(--dg-lienzo);
 }
 
 .diagrama-marco .mermaid {
@@ -82,7 +144,7 @@
   left: 0.8rem;
   bottom: 0.3rem;
   font-size: 0.6rem;
-  color: var(--md-default-fg-color--light);
+  color: var(--dg-texto-sec);
   pointer-events: none;
 }
 
@@ -94,10 +156,10 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.25rem 0.6rem;
-  border: 1px solid var(--md-default-fg-color--lighter);
+  border: 1px solid var(--dg-borde-fuerte);
   border-radius: 0.35rem;
-  background: var(--md-default-bg-color);
-  color: var(--md-default-fg-color--light);
+  background: var(--dg-tarjeta);
+  color: var(--dg-texto-sec);
   font-size: 0.62rem;
   font-weight: 600;
   cursor: pointer;
@@ -112,8 +174,8 @@
 
 .diagrama-marco__zoom:hover,
 .diagrama-marco__zoom:focus-visible {
-  border-color: var(--md-accent-fg-color);
-  color: var(--md-accent-fg-color);
+  border-color: var(--dg-clay);
+  color: var(--dg-clay);
 }
 
 /* En pantallas táctiles no hay hover: el botón queda siempre visible */
@@ -190,6 +252,7 @@ body.diagrama-visor-abierto {
   overflow: hidden;
   cursor: grab;
   touch-action: none;
+  background: var(--dg-lienzo);
 }
 
 .diagrama-visor.is-arrastrando .diagrama-visor__area {
@@ -224,4 +287,163 @@ body.diagrama-visor-abierto {
   .diagrama-marco .mermaid {
     overflow: visible;
   }
+}
+
+/* ==========================================================================
+   Tema de los diagramas
+   Mermaid escribe los colores en atributos inline, de ahí los !important.
+   ========================================================================== */
+
+.diagrama-marco .mermaid,
+.diagrama-visor__lienzo {
+  color: var(--dg-texto);
+}
+
+/* Todo el texto en casi-negro: los rellenos siempre son claros */
+.diagrama-marco .mermaid text,
+.diagrama-marco .mermaid tspan,
+.diagrama-visor__lienzo text,
+.diagrama-visor__lienzo tspan {
+  fill: var(--dg-texto) !important;
+}
+
+.diagrama-marco .mermaid .nodeLabel,
+.diagrama-marco .mermaid .edgeLabel,
+.diagrama-marco .mermaid foreignObject div,
+.diagrama-visor__lienzo .nodeLabel,
+.diagrama-visor__lienzo .edgeLabel,
+.diagrama-visor__lienzo foreignObject div {
+  color: var(--dg-texto) !important;
+}
+
+/* Nodos: tarjetas claras con borde cálido */
+.diagrama-marco .mermaid .node rect,
+.diagrama-marco .mermaid .node circle,
+.diagrama-marco .mermaid .node ellipse,
+.diagrama-marco .mermaid .node polygon,
+.diagrama-marco .mermaid .node path,
+.diagrama-visor__lienzo .node rect,
+.diagrama-visor__lienzo .node circle,
+.diagrama-visor__lienzo .node ellipse,
+.diagrama-visor__lienzo .node polygon,
+.diagrama-visor__lienzo .node path {
+  fill: var(--dg-tarjeta) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+  stroke-width: 1px !important;
+}
+
+/* Los rombos de decisión llevan el acento */
+.diagrama-marco .mermaid .node polygon,
+.diagrama-visor__lienzo .node polygon {
+  fill: var(--dg-manila) !important;
+  stroke: var(--dg-clay) !important;
+}
+
+/* Subgrafos: fondo apenas más oscuro que el lienzo */
+.diagrama-marco .mermaid .cluster rect,
+.diagrama-visor__lienzo .cluster rect {
+  fill: var(--dg-tarjeta-alt) !important;
+  stroke: var(--dg-borde) !important;
+}
+
+.diagrama-marco .mermaid .cluster text,
+.diagrama-visor__lienzo .cluster text {
+  fill: var(--dg-texto-sec) !important;
+  font-weight: 600;
+}
+
+/* Aristas y flechas */
+.diagrama-marco .mermaid .edgePath .path,
+.diagrama-marco .mermaid .flowchart-link,
+.diagrama-visor__lienzo .edgePath .path,
+.diagrama-visor__lienzo .flowchart-link {
+  stroke: var(--dg-linea) !important;
+  stroke-width: 1.5px !important;
+}
+
+.diagrama-marco .mermaid marker path,
+.diagrama-marco .mermaid .arrowheadPath,
+.diagrama-visor__lienzo marker path,
+.diagrama-visor__lienzo .arrowheadPath {
+  fill: var(--dg-linea) !important;
+  stroke: none !important;
+}
+
+/* Etiquetas sobre las aristas */
+.diagrama-marco .mermaid .edgeLabel rect,
+.diagrama-marco .mermaid .labelBkg,
+.diagrama-visor__lienzo .edgeLabel rect,
+.diagrama-visor__lienzo .labelBkg {
+  fill: var(--dg-lienzo) !important;
+  background: var(--dg-lienzo) !important;
+  opacity: 1 !important;
+}
+
+/* Línea de tiempo y diagramas por secciones: seis tintes cálidos */
+.diagrama-marco .mermaid [class*="section-0"] rect,
+.diagrama-marco .mermaid rect.cScale0,
+.diagrama-visor__lienzo [class*="section-0"] rect,
+.diagrama-visor__lienzo rect.cScale0 {
+  fill: var(--dg-manila) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+.diagrama-marco .mermaid [class*="section-1"] rect,
+.diagrama-marco .mermaid rect.cScale1,
+.diagrama-visor__lienzo [class*="section-1"] rect,
+.diagrama-visor__lienzo rect.cScale1 {
+  fill: var(--dg-salvia) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+.diagrama-marco .mermaid [class*="section-2"] rect,
+.diagrama-marco .mermaid rect.cScale2,
+.diagrama-visor__lienzo [class*="section-2"] rect,
+.diagrama-visor__lienzo rect.cScale2 {
+  fill: var(--dg-cielo) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+.diagrama-marco .mermaid [class*="section-3"] rect,
+.diagrama-marco .mermaid rect.cScale3,
+.diagrama-visor__lienzo [class*="section-3"] rect,
+.diagrama-visor__lienzo rect.cScale3 {
+  fill: var(--dg-kraft) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+.diagrama-marco .mermaid [class*="section-4"] rect,
+.diagrama-marco .mermaid rect.cScale4,
+.diagrama-visor__lienzo [class*="section-4"] rect,
+.diagrama-visor__lienzo rect.cScale4 {
+  fill: var(--dg-brezo) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+.diagrama-marco .mermaid [class*="section-5"] rect,
+.diagrama-marco .mermaid rect.cScale5,
+.diagrama-visor__lienzo [class*="section-5"] rect,
+.diagrama-visor__lienzo rect.cScale5 {
+  fill: var(--dg-tarjeta-alt) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+/* Git graph y diagramas de estado */
+.diagrama-marco .mermaid .commit-label,
+.diagrama-visor__lienzo .commit-label {
+  fill: var(--dg-texto) !important;
+}
+
+.diagrama-marco .mermaid .statediagram-state rect,
+.diagrama-visor__lienzo .statediagram-state rect {
+  fill: var(--dg-tarjeta) !important;
+  stroke: var(--dg-borde-fuerte) !important;
+}
+
+/* Gráfico de sectores */
+.diagrama-marco .mermaid .pieTitleText,
+.diagrama-marco .mermaid .slice,
+.diagrama-visor__lienzo .pieTitleText,
+.diagrama-visor__lienzo .slice {
+  fill: var(--dg-texto) !important;
 }
