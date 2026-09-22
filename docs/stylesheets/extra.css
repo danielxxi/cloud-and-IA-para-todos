@@ -659,3 +659,36 @@ body.diagrama-visor-abierto {
 .diagrama-visor__lienzo .slice {
   fill: var(--dg-texto) !important;
 }
+
+/* --- Crédito de autor en el pie ------------------------------------------- */
+
+.md-copyright__highlight {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.35rem;
+}
+
+.credito-autor {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  font-family: var(--t-serif);
+  font-style: italic;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--t-terracota);
+  opacity: 0.75;
+}
+
+.credito-autor::before {
+  content: "✦";
+  margin-right: 0.4rem;
+  font-style: normal;
+  opacity: 0.6;
+}
+
+[data-md-color-scheme="slate"] .credito-autor {
+  color: var(--t-terracota-claro);
+  opacity: 0.7;
+}

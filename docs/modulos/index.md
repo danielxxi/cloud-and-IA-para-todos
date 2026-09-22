@@ -152,7 +152,3 @@ Siete sesiones de tres horas, organizadas en seis bloques. Cada bloque se apoya 
 
 </div>
 
----
-
-!!! note "Sobre la reorganización del temario"
-    Este temario consolida y amplía un programa original de 12 sesiones. Se eliminaron los solapamientos —una sesión genérica de "contenerización" que duplicaba los módulos de Docker y Kubernetes, y un subtema de Kubernetes dentro del módulo de arquitecturas— y se añadieron cuatro ejes: arquitectura empresarial con TOGAF, fundamentos de Git ampliados, ingeniería de harness e ingeniería de grafos. Ver la [ruta de aprendizaje](../ruta.md) para las dependencias resultantes.
