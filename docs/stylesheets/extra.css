@@ -334,8 +334,14 @@ body[data-md-color-scheme="slate"][data-md-color-primary="black"] {
    ========================================================================== */
 
 /* Paleta de diagramas: rellenos siempre claros, texto siempre oscuro, para
-   que el contraste no dependa del modo activo. */
-:root {
+   que el contraste no dependa del modo activo.
+
+   El selector incluye `:root > *` porque Material define las variables
+   --md-mermaid-* con ese mismo selector (mayor especificidad que :root). Sin
+   igualarlo, sus valores —dependientes del esquema— ganarían en modo oscuro y
+   los diagramas cambiarían de color. */
+:root,
+:root > * {
   --dg-tarjeta: #fbfaf7;
   --dg-tarjeta-alt: #efece4;
   --dg-borde: #d8d2c6;
@@ -423,24 +429,20 @@ body[data-md-color-scheme="slate"][data-md-color-primary="black"] {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   border: 1px solid var(--dg-borde-fuerte);
   border-radius: 0.35rem;
   background: var(--dg-tarjeta);
   color: var(--dg-texto-grafico);
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   font-weight: 600;
   cursor: pointer;
-  opacity: 0.85;
-  transition: opacity 140ms, color 140ms, border-color 140ms;
+  opacity: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: color 140ms, border-color 140ms, background-color 140ms;
 }
 
 .diagrama-marco:hover .diagrama-marco__zoom,
-.diagrama-marco__zoom:focus-visible {
-  opacity: 1;
-}
-
-.diagrama-marco__zoom:hover,
 .diagrama-marco__zoom:focus-visible {
   border-color: var(--dg-clay);
   color: var(--dg-clay);

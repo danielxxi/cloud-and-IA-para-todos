@@ -4,7 +4,7 @@ Repositorio de aprendizaje de arquitectura en Nube e Inteligencia Artificial.
 
 Curso completo y material docente sobre **infraestructura moderna para Inteligencia Artificial**: desde los fundamentos de la nube hasta la ingeniería de sistemas agénticos.
 
-El sitio se publica con [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) y está pensado para impartirse en **14 sesiones de 3 horas**.
+El sitio se publica con [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) y está pensado para impartirse en **7 sesiones de 3 horas**.
 
 📖 **Sitio publicado:** <https://danielxxi.github.io/cloud-and-IA-para-todos/>
 

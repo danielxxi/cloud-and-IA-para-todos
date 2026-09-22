@@ -9,7 +9,7 @@ Construir un modelo es la parte visible. Sostenerlo en producción —con datos 
 
 Este curso trata de esa parte: **la infraestructura sobre la que se apoya la inteligencia artificial**, desde el centro de datos hasta el sistema agéntico que supervisa su propio trabajo.
 
-Son **14 módulos de 3 horas**, organizados en seis bloques que se apoyan uno sobre otro. Cada módulo combina teoría, casos reales de la región, un laboratorio práctico y ejercicios de evaluación.
+Son **14 módulos** impartidos en **7 sesiones de 3 horas**, organizados en seis bloques que se apoyan uno sobre otro. Cada módulo combina teoría, casos reales de la región, un laboratorio práctico y ejercicios de evaluación.
 
 ---
 

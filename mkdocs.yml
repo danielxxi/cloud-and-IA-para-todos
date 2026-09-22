@@ -60,10 +60,12 @@ theme:
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=swap
-  - stylesheets/extra.css?v=4
+  - stylesheets/extra.css?v=7
 
 extra_javascript:
-  - javascripts/diagramas.js?v=4
+  - javascripts/diagramas.js?v=7
+  - javascripts/mathjax.js?v=1
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - abbr
@@ -74,8 +76,6 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: "¶"
-      permalink_title: Enlace permanente a esta sección
       toc_depth: 3
   - pymdownx.arithmatex:
       generic: true
