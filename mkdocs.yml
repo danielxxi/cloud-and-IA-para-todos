@@ -13,6 +13,7 @@ edit_uri: edit/main/docs/
 copyright: >-
   Material docente del Diplomado en Inteligencia Artificial ·
   Distribuido bajo licencia CC BY-NC-SA 4.0
+  <span class="credito-autor">Curso desarrollado y diseñado por José Daniel Ayala Barrera</span>
 
 theme:
   name: material
@@ -60,7 +61,7 @@ theme:
 
 extra_css:
   - https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,400&display=swap
-  - stylesheets/extra.css?v=7
+  - stylesheets/extra.css?v=8
 
 extra_javascript:
   - javascripts/diagramas.js?v=7
