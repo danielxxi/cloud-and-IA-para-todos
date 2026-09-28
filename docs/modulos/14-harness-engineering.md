@@ -5,7 +5,7 @@ tags:
   - Nuevo
 ---
 
-# Módulo 13 · Ingeniería de Harness para IA
+# Módulo 14 · Ingeniería de Harness para IA
 
 <div class="modulo-meta" markdown>
 <span>:material-clock-outline: 3 horas</span>
@@ -99,7 +99,7 @@ flowchart TB
 
     - **Harness:** hace que **una ejecución** sea fiable. Es la base.
     - **Loop:** hace que **las ejecuciones sucesivas** sean autónomas.
-    - **Grafo:** organiza **múltiples agentes y loops** en un sistema ([módulo 14](14-graph-engineering.md)).
+    - **Grafo:** organiza **múltiples agentes y loops** en un sistema ([módulo 15](15-graph-engineering.md)).
 
     Sin harness, un loop solo automatiza el fallo. Sin loop, un grafo no tiene nada que orquestar.
 

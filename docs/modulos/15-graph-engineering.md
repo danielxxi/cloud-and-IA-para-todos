@@ -5,12 +5,12 @@ tags:
   - Nuevo
 ---
 
-# Módulo 14 · Ingeniería de Grafos para IA
+# Módulo 15 · Ingeniería de Grafos para IA
 
 <div class="modulo-meta" markdown>
 <span>:material-clock-outline: 3 horas</span>
 <span>:material-stairs: Nivel introductorio</span>
-<span>:material-link-variant: Requiere módulo 13</span>
+<span>:material-link-variant: Requiere módulo 14</span>
 <span>:material-star-outline: Capítulo nuevo</span>
 </div>
 
