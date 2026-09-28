@@ -134,21 +134,29 @@ Siete sesiones de tres horas, organizadas en seis bloques. Cada bloque se apoya 
 
 <div class="grid cards" markdown>
 
--   **13 · Ingeniería de Harness para IA**
+-   **13 · Fundamentos de Arquitectura de IA y Agentes**
 
     ---
+    
+    De modelos aislados a arquitecturas integradas: anatomía del agente, memoria y RAG, patrón ReAct, planificación avanzada, sistemas multiagente, seguridad, guardrails y observabilidad.
+    
+    [:octicons-arrow-right-24: Abrir módulo](13-fundamentos-arquitectura-ia-agentes.md)
 
+-   **14 · Ingeniería de Harness para IA**
+
+    ---
+    
     Por qué un modelo excelente falla igual, qué es un harness, el repositorio como fuente de verdad, verificación independiente, estado persistente y observabilidad.
+    
+    [:octicons-arrow-right-24: Abrir módulo](14-harness-engineering.md)
 
-    [:octicons-arrow-right-24: Abrir módulo](13-harness-engineering.md)
-
--   **14 · Ingeniería de Grafos para IA**
+-   **15 · Ingeniería de Grafos para IA**
 
     ---
-
+    
     De un loop único a un grafo explícito: nodos, aristas, estado compartido y enrutamiento; grafo frente a workflow; cuándo vale la pena y cuándo no.
-
-    [:octicons-arrow-right-24: Abrir módulo](14-graph-engineering.md)
+    
+    [:octicons-arrow-right-24: Abrir módulo](15-graph-engineering.md)
 
 </div>
 

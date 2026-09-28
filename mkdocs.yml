@@ -3,7 +3,7 @@ site_description: >-
   Curso completo de infraestructura moderna para Inteligencia Artificial:
   nube, arquitectura empresarial, datos, contenedores, MLOps, visión por
   computadora e ingeniería de sistemas agénticos.
-site_author: Diplomado en Inteligencia Artificial
+site_author: Aprendiendo Inteligencia Artificial con Daniel Ayala
 site_url: https://danielxxi.github.io/cloud-and-IA-para-todos/
 
 repo_url: https://github.com/danielxxi/cloud-and-IA-para-todos
@@ -11,7 +11,7 @@ repo_name: danielxxi/cloud-and-IA-para-todos
 edit_uri: edit/main/docs/
 
 copyright: >-
-  Material docente del Diplomado en Inteligencia Artificial ·
+  Aprende Infraestructura Cloud e Infraestructura de Inteligencia Artificial ·
   Distribuido bajo licencia CC BY-NC-SA 4.0
   <span class="credito-autor">Curso desarrollado y diseñado por José Daniel Ayala Barrera</span>
 
@@ -143,8 +143,9 @@ nav:
           - 11 · Visión por computadora, fundamentos: modulos/11-vision-fundamentos.md
           - 12 · Visión por computadora, aplicaciones: modulos/12-vision-aplicaciones.md
       - "Bloque VI · Sistemas agénticos":
-          - 13 · Ingeniería de Harness para IA: modulos/13-harness-engineering.md
-          - 14 · Ingeniería de Grafos para IA: modulos/14-graph-engineering.md
+          - 13 · Fundamentos de Arquitectura de IA y Agentes: modulos/13-fundamentos-arquitectura-ia-agentes.md
+          - 14 · Ingeniería de Harness para IA: modulos/14-harness-engineering.md
+          - 15 · Ingeniería de Grafos para IA: modulos/15-graph-engineering.md
   - Prácticas:
       - practicas/index.md
       - P01 · Comparar modelos de servicio y costos: practicas/p01-modelos-costos.md

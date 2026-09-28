@@ -362,7 +362,7 @@ flowchart TB
 !!! tip "La capa que casi nadie instrumenta es la de negocio"
     Un panel con latencia y uso de GPU en verde mientras la tasa de conversión cae es un panel que miente por omisión.
 
-    Conecta al menos una métrica de negocio a cada modelo en producción. Es la única forma de detectar que el modelo optimiza un número que se separó de lo que le importa al negocio —el fenómeno que el [módulo 14](14-graph-engineering.md) llama ley de Goodhart.
+    Conecta al menos una métrica de negocio a cada modelo en producción. Es la única forma de detectar que el modelo optimiza un número que se separó de lo que le importa al negocio —el fenómeno que el [módulo 15](15-graph-engineering.md) llama ley de Goodhart.
 
 ### SLI, SLO y presupuesto de error
 
@@ -399,7 +399,7 @@ AIOps es el uso de IA para operar sistemas: detección de anomalías, correlaci�
 
 La evolución reciente son agentes que diagnostican y proponen correcciones: leen registros, consultan métricas, correlacionan con despliegues recientes y abren un pull request con el arreglo.
 
-Aquí aplica íntegro el principio del [módulo 04](04-arquitectura-seguridad.md): **un agente con acceso a producción es un operador con permisos**. Debe tener permisos mínimos, acciones irreversibles bajo confirmación humana y todo registrado. El diseño de ese entorno es el [módulo 13](13-harness-engineering.md).
+Aquí aplica íntegro el principio del [módulo 04](04-arquitectura-seguridad.md): **un agente con acceso a producción es un operador con permisos**. Debe tener permisos mínimos, acciones irreversibles bajo confirmación humana y todo registrado. El diseño de ese entorno es el [módulo 14](14-harness-engineering.md).
 
 ---
 
@@ -669,4 +669,4 @@ def test_latencia(modelo, benchmark):
 - [OpenGitOps · Principios](https://opengitops.dev/) — la definición neutral de GitOps.
 - [Google SRE Book](https://sre.google/books/) — SLO, presupuestos de error y gestión de incidentes.
 - [Evidently AI · Guía de monitoreo de ML](https://www.evidentlyai.com/ml-in-production) — detección de deriva en la práctica.
-- [Módulo 13 · Ingeniería de Harness](13-harness-engineering.md) — cuando el que opera el pipeline es un agente.
+- [Módulo 14 · Ingeniería de Harness](14-harness-engineering.md) — cuando el que opera el pipeline es un agente.

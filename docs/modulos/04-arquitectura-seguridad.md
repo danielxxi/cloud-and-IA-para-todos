@@ -421,7 +421,7 @@ Esta distinción tiene consecuencias económicas directas: el entrenamiento se b
     - Todo lo que el agente hace queda registrado.
     - El contenido externo se trata como entrada no confiable, nunca como instrucción.
 
-    Este tema se desarrolla en el [módulo 13](13-harness-engineering.md).
+    Este tema se desarrolla en el [módulo 14](14-harness-engineering.md).
 
 ---
 
@@ -564,4 +564,4 @@ La versión aprobada combina **confianza calibrada + monto del siniestro + histo
 - [ISO/IEC 42001 · Sistemas de gestión de IA](https://www.iso.org/standard/81230.html) — la norma certificable para gobierno de IA.
 - [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — marco de gestión de riesgo de IA.
 - [Módulo 09 · Kubernetes](09-kubernetes.md) — cómo se implementan muchos de estos controles en la práctica.
-- [Módulo 13 · Ingeniería de Harness](13-harness-engineering.md) — el aislamiento y la verificación aplicados a agentes.
+- [Módulo 14 · Ingeniería de Harness](14-harness-engineering.md) — el aislamiento y la verificación aplicados a agentes.

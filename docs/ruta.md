@@ -21,9 +21,10 @@ flowchart TB
     M05 --> M11["11 · Visión: fundamentos"]
     M11 --> M12["12 · Visión: aplicaciones"]
     M10 --> M12
-    M07 --> M13["13 · Harness"]
+    M07 --> M13["13 · Fundamentos de Arquitectura de IA y Agentes"]
     M10 --> M13
-    M13 --> M14["14 · Grafos"]
+    M13 --> M14["14 · Ingeniería de Harness para IA"]
+    M14 --> M15["15 · Ingeniería de Grafos para IA"]
     classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#6b3a1f;
 ```
 
@@ -49,19 +50,19 @@ flowchart TB
 
     Te interesa que todo corra y se pueda revertir.
 
-    `02 → 04 → 07 → 08 → 09 → 10 → 13 → 14`
+    `02 → 04 → 07 → 08 → 09 → 10 → 13 → 14 → 15`
 
 === "Desarrollador que se mueve a IA"
 
     Te interesa llegar a producción con un modelo propio.
 
-    `01 → 02 → 07 → 08 → 09 → 11 → 12 → 13`
+    `01 → 02 → 07 → 08 → 09 → 11 → 12 → 13 → 14`
 
 === "Ruta completa (diplomado)"
 
-    Las 7 sesiones en orden, una por semana.
+    Las 15 sesiones en orden, una por semana.
 
-    `01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11 → 12 → 13 → 14`
+    `01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11 → 12 → 13 → 14 → 15`
 
 ## Progresión de las prácticas
 
@@ -95,5 +96,5 @@ Si solo puedes hacer tres: **P05**, **P06** y **P07**. Son las que convierten un
 | III · Datos | 2 | 6 | 6 |
 | IV · Ingeniería de plataforma | 4 | 12 | 14 |
 | V · IA aplicada | 2 | 6 | 8 |
-| VI · Sistemas agénticos | 2 | 6 | 6 |
-| **Total** | **14** | **42** | **44** |
+| VI · Sistemas agénticos | 3 | 9 | 9 |
+| **Total** | **15** | **45** | **48** |
