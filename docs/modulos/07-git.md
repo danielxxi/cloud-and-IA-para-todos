@@ -374,7 +374,7 @@ git worktree remove ../proyecto-hotfix
 Crea un segundo directorio de trabajo con otra rama, compartiendo el mismo repositorio. Evita el `stash` constante al alternar tareas.
 
 !!! note "Worktrees y agentes de IA"
-    Los worktrees se han vuelto una pieza de infraestructura relevante para ejecutar varios agentes de codificación en paralelo: cada agente trabaja en un directorio aislado y físicamente no puede pisar el trabajo de otro. Este patrón reaparece en el [módulo 14](14-graph-engineering.md).
+    Los worktrees se han vuelto una pieza de infraestructura relevante para ejecutar varios agentes de codificación en paralelo: cada agente trabaja en un directorio aislado y físicamente no puede pisar el trabajo de otro. Este patrón reaparece en el [módulo 15](15-graph-engineering.md).
 
 ---
 
@@ -505,7 +505,7 @@ Una idea que atraviesa la ingeniería moderna: lo que no está en el repositorio
 - Una configuración aplicada a mano en un servidor, se olvida.
 - Un contexto que vive en la cabeza de una persona, se va con esa persona.
 
-Esta idea se vuelve literal cuando trabajas con agentes de IA: **un agente solo puede ver lo que está en el repositorio**. Es el fundamento del [módulo 13](13-harness-engineering.md).
+Esta idea se vuelve literal cuando trabajas con agentes de IA: **un agente solo puede ver lo que está en el repositorio**. Es el fundamento del [módulo 14](14-harness-engineering.md).
 
 ---
 

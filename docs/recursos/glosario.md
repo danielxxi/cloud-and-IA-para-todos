@@ -13,10 +13,10 @@ Términos del curso, con el módulo donde se tratan.
 **AIOps** · [M10](../modulos/10-devops-mlops.md)
 : Uso de IA para detectar, correlacionar, diagnosticar y remediar en la operación de sistemas.
 
-**Ancla** · [M14](../modulos/14-graph-engineering.md)
+**Ancla** · [M15](../modulos/15-graph-engineering.md)
 : Mecanismo que fija un loop al mundo real: resultado de negocio, verdad de referencia, muestreo manual.
 
-**Arista** · [M14](../modulos/14-graph-engineering.md)
+**Arista** · [M15](../modulos/15-graph-engineering.md)
 : Conexión entre nodos de un grafo; expresa paralelismo, condición, reintento o retroceso.
 
 **Arquitectura de transición** · [M03](../modulos/03-togaf-ia.md)
@@ -106,7 +106,7 @@ Términos del curso, con el módulo donde se tratan.
 **DevOps** · [M10](../modulos/10-devops-mlops.md)
 : Eliminación del muro entre desarrollo y operación mediante responsabilidad compartida.
 
-**Deuda de verificación** · [M13](../modulos/13-harness-engineering.md)
+**Deuda de verificación** · [M14](../modulos/14-harness-engineering.md)
 : Brecha entre lo que se aceptó y lo que se comprobó mecánicamente.
 
 **Dependencia del proveedor (*vendor lock-in*)** · [M02](../modulos/02-modelos-servicio.md)
@@ -157,13 +157,13 @@ Términos del curso, con el módulo donde se tratan.
 **GitOps** · [M10](../modulos/10-devops-mlops.md)
 : Infraestructura declarada en Git y reconciliada continuamente por un agente.
 
-**Goodhart (ley de)** · [M14](../modulos/14-graph-engineering.md)
+**Goodhart (ley de)** · [M15](../modulos/15-graph-engineering.md)
 : Cuando una medida se convierte en objetivo, deja de ser una buena medida.
 
 **Grad-CAM** · [M11](../modulos/11-vision-fundamentos.md)
 : Mapa de calor que indica qué regiones de la imagen influyeron en la predicción.
 
-**Graph Engineering** · [M14](../modulos/14-graph-engineering.md)
+**Graph Engineering** · [M15](../modulos/15-graph-engineering.md)
 : Organización de agentes, loops, herramientas y evaluadores en un grafo explícito.
 
 **Gravedad de los datos** · [M01](../modulos/01-fundamentos-nube.md)
@@ -171,7 +171,7 @@ Términos del curso, con el módulo donde se tratan.
 
 ## H
 
-**Harness** · [M13](../modulos/13-harness-engineering.md)
+**Harness** · [M14](../modulos/14-harness-engineering.md)
 : Sistema de entorno, estado, verificación y control dentro del cual opera un agente.
 
 **HPA / VPA / KEDA** · [M09](../modulos/09-kubernetes.md)
@@ -191,13 +191,13 @@ Términos del curso, con el módulo donde se tratan.
 **Imagen (contenedor)** · [M08](../modulos/08-docker.md)
 : Plantilla inmutable de solo lectura formada por capas.
 
-**Impuesto de orquestación** · [M14](../modulos/14-graph-engineering.md)
+**Impuesto de orquestación** · [M15](../modulos/15-graph-engineering.md)
 : Arrancar agentes es barato, revisar sus resultados es caro; tu atención es serial.
 
 **initContainer** · [M09](../modulos/09-kubernetes.md)
 : Contenedor que se ejecuta y termina antes que los contenedores principales del Pod.
 
-**Inyección de prompt** · [M04](../modulos/04-arquitectura-seguridad.md), [M13](../modulos/13-harness-engineering.md)
+**Inyección de prompt** · [M04](../modulos/04-arquitectura-seguridad.md), [M14](../modulos/14-harness-engineering.md)
 : Contenido no confiable procesado por un modelo que actúa como instrucción.
 
 **IoT** · [M06](../modulos/06-edge-iot.md)
@@ -217,7 +217,7 @@ Términos del curso, con el módulo donde se tratan.
 **LoRaWAN** · [M06](../modulos/06-edge-iot.md)
 : Red de área amplia de bajo consumo y bajo ancho de banda, con alcance de kilómetros.
 
-**Loop Engineering** · [M13](../modulos/13-harness-engineering.md), [M14](../modulos/14-graph-engineering.md)
+**Loop Engineering** · [M14](../modulos/14-harness-engineering.md), [M15](../modulos/15-graph-engineering.md)
 : Diseñar el sistema que hace prompting al agente, en lugar de hacerlo tú.
 
 ## M
@@ -257,7 +257,7 @@ Términos del curso, con el módulo donde se tratan.
 **NMS** · [M11](../modulos/11-vision-fundamentos.md)
 : Supresión no máxima; elimina detecciones duplicadas del mismo objeto.
 
-**Nodo (grafo)** · [M14](../modulos/14-graph-engineering.md)
+**Nodo (grafo)** · [M15](../modulos/15-graph-engineering.md)
 : Unidad de trabajo con una responsabilidad; puede ser código, herramienta, agente o humano.
 
 **OCI** · [M08](../modulos/08-docker.md)
@@ -323,7 +323,7 @@ Términos del curso, con el módulo donde se tratan.
 **SaaS** · [M02](../modulos/02-modelos-servicio.md)
 : Software terminado por suscripción; administras únicamente tus datos y configuración.
 
-**Separación generador-evaluador** · [M13](../modulos/13-harness-engineering.md)
+**Separación generador-evaluador** · [M14](../modulos/14-harness-engineering.md)
 : Quien hace el trabajo no lo califica; el verificador tiene contexto nuevo.
 
 **Service (Kubernetes)** · [M09](../modulos/09-kubernetes.md)

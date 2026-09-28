@@ -45,7 +45,7 @@ Este bucle de reconciliación corre indefinidamente. Si matas un Pod, aparece ot
 !!! tip "Todo en Kubernetes es un bucle de reconciliación"
     Deployments, Services, autoescaladores, operadores: todos siguen el mismo patrón —observar, comparar, actuar. Entendido el patrón, cada objeto nuevo es una variación conocida.
 
-    Este mismo patrón reaparece en GitOps ([módulo 10](10-devops-mlops.md)) y en los loops de agentes ([módulo 13](13-harness-engineering.md)).
+    Este mismo patrón reaparece en GitOps ([módulo 10](10-devops-mlops.md)) y en los loops de agentes ([módulo 14](14-harness-engineering.md)).
 
 ---
 

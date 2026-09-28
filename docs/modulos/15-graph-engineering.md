@@ -482,7 +482,7 @@ Te da nodos, aristas y puntos de control. No te responde qué loops alimentan a 
 
 ## Caso práctico · Grafo de mantenimiento de una plataforma de datos
 
-El equipo del [módulo 13](13-harness-engineering.md) llega al límite de su loop. Su automatización diaria de triaje funciona, pero se atasca sistemáticamente en un tipo de tarea: las incidencias de calidad de datos, donde la causa puede estar en el origen, en la transformación o en el contrato.
+El equipo del [módulo 14](14-harness-engineering.md) llega al límite de su loop. Su automatización diaria de triaje funciona, pero se atasca sistemáticamente en un tipo de tarea: las incidencias de calidad de datos, donde la causa puede estar en el origen, en la transformación o en el contrato.
 
 ### El problema con el loop único
 
@@ -666,7 +666,7 @@ Esta suele ser la parte más reveladora del ejercicio.
 
 ## Ejercicios
 
-1. **Explicita las aristas ocultas.** Dibuja como grafo el harness que construiste en el [módulo 13](13-harness-engineering.md). Marca qué arista es condicional y cuál de retroceso. Responde: ¿cuál estaba implícita en el contexto del agente?
+1. **Explicita las aristas ocultas.** Dibuja como grafo el harness que construiste en el [módulo 14](14-harness-engineering.md). Marca qué arista es condicional y cuál de retroceso. Responde: ¿cuál estaba implícita en el contexto del agente?
 
 2. **Las cuatro preguntas.** Toma tres automatizaciones que ejecutes en el mismo proyecto y responde las cuatro preguntas de diseño de la sección 7.
 
@@ -693,4 +693,4 @@ Esta suele ser la parte más reveladora del ejercicio.
 - [Addy Osmani · The Orchestration Tax](https://addyosmani.com/blog/orchestration-tax/) — por qué tu atención es el único recurso serial.
 - [Addy Osmani · Loop Engineering](https://addyosmani.com/blog/loop-engineering/) — el conocimiento previo: diseñar el sistema que hace prompting en tu lugar.
 - [LangChain · The Best AI Agent Frameworks](https://www.langchain.com/resources/ai-agent-frameworks) — comparación de los motores principales.
-- [Módulo 13 · Ingeniería de Harness](13-harness-engineering.md) — la base sobre la que se apoya todo esto.
+- [Módulo 14 · Ingeniería de Harness](14-harness-engineering.md) — la base sobre la que se apoya todo esto.

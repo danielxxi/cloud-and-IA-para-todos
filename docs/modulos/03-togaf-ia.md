@@ -292,7 +292,7 @@ En la práctica, en proyectos de IA conviene un enfoque pragmático:
 !!! tip "El repositorio como repositorio de arquitectura"
     TOGAF habla de un "repositorio de arquitectura" como concepto abstracto. En una organización de ingeniería moderna, ese repositorio debería ser **el repositorio de código**: versionado, con historial, con revisión por pares y accesible tanto a humanos como a agentes.
 
-    Esta idea reaparece con fuerza en el [módulo 13](13-harness-engineering.md): lo que no está en el repositorio, para un agente, no existe.
+    Esta idea reaparece con fuerza en el [módulo 14](14-harness-engineering.md): lo que no está en el repositorio, para un agente, no existe.
 
 ### Plantilla de ADR
 

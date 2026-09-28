@@ -606,4 +606,4 @@ echo "==> Listo. Servidor: make dev  →  http://localhost:8000"
 - [AGENTS.md](https://agents.md/) — la convención de archivo de instrucciones para agentes.
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — inyección de prompt y riesgos asociados.
 - [Simon Willison · Designing Agentic Loops](https://simonwillison.net/) — reflexiones prácticas sobre diseño de bucles de agente.
-- [Módulo 14 · Ingeniería de Grafos](14-graph-engineering.md) — qué pasa cuando hay más de un agente.
+- [Módulo 15 · Ingeniería de Grafos](15-graph-engineering.md) — qué pasa cuando hay más de un agente.

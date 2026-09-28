@@ -181,7 +181,7 @@ Fuentes primarias citadas en el curso, organizadas por bloque. Se priorizan docu
 ## Nota sobre las fuentes
 
 !!! warning "Verifica antes de citar"
-    Varias cifras que circulan sobre ingeniería de grafos y sobre rendimiento de agentes provienen de artículos que no tratan del tema o que comparan contra líneas base distintas. El [módulo 14](../modulos/14-graph-engineering.md) documenta un caso concreto.
+    Varias cifras que circulan sobre ingeniería de grafos y sobre rendimiento de agentes provienen de artículos que no tratan del tema o que comparan contra líneas base distintas. El [módulo 15](../modulos/15-graph-engineering.md) documenta un caso concreto.
 
     La regla del curso es la misma que se aplica a los modelos: **si no puedes rastrear el número hasta su fuente original, no lo uses.**
 

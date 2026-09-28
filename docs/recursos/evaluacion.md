@@ -110,7 +110,7 @@ Una buena auditoría:
 - Distingue entre "esto está mal" y "esto yo lo habría hecho distinto".
 
 !!! tip "Por qué existe esta componente"
-    Revisar el trabajo ajeno enseña más que hacer el propio, y es la habilidad central del [módulo 13](../modulos/13-harness-engineering.md): tu ancho de banda de revisión es el techo de todo el sistema.
+    Revisar el trabajo ajeno enseña más que hacer el propio, y es la habilidad central del [módulo 14](../modulos/14-harness-engineering.md): tu ancho de banda de revisión es el techo de todo el sistema.
 
 ---
 
