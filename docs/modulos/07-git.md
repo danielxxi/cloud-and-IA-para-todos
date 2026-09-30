@@ -5,7 +5,7 @@ tags:
   - Git
 ---
 
-# Módulo 07 · Fundamentos de Git y control de versiones
+# Módulo 07 · Fundamentos de Git y fundamentos de control de versiones
 
 <div class="modulo-meta" markdown>
 <span>:material-clock-outline: 3 horas</span>
@@ -64,7 +64,7 @@ La consecuencia más profunda de ser distribuido no es técnica sino cultural: *
 
 ---
 
-## 2. Historia
+## 2.  Un poco de historia
 
 Git nació en 2005 de un conflicto. El kernel de Linux usaba BitKeeper, una herramienta propietaria cedida gratuitamente a la comunidad. Cuando esa cesión terminó, Linus Torvalds necesitaba un reemplazo y ninguno de los existentes cumplía sus requisitos.
 

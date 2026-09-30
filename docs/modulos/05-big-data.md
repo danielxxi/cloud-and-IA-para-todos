@@ -18,11 +18,11 @@ Este módulo trata de la infraestructura que hace que el dato llegue: dónde se 
 
 ---
 
-## 1. Qué hace "grande" a un dato
+## 1. Qué hace "grande" a un dato?
 
 Big Data no se define por el tamaño absoluto. Se define por el punto en el que **las herramientas convencionales dejan de funcionar**: cuando una base de datos relacional en un solo servidor ya no puede ingerir, almacenar o consultar los datos en un tiempo razonable.
 
-### Las 5 V
+### Las 5 V del Big Data
 
 | V | Definición | Pregunta de diseño | Consecuencia en infraestructura |
 | --- | --- | --- | --- |
