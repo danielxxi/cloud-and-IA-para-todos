@@ -623,6 +623,106 @@ flowchart LR
 
 **Objetivo:** ejercitar el ciclo real, incluyendo el conflicto y la recuperación de trabajo perdido.
 
+!!! note "Elige tu sistema operativo"
+    Sigue las instrucciones para tu sistema operativo. Los comandos cambian entre Windows, macOS y Linux, pero la lógica de Git es idéntica en los tres.
+
+### Windows
+
+**Paso 1 — Inicializa.**
+
+```powershell
+mkdir lab-git
+cd lab-git
+git init
+git config user.name "Tu Nombre"
+git config user.email "tu@correo.com"
+
+@"
+UMBRAL = 0.5
+
+def predecir(puntuacion):
+    return "positivo" if puntuacion > UMBRAL else "negativo"
+"@ | Out-File -Encoding UTF8 modelo.py
+
+git add modelo.py
+git commit -m "feat(modelo): clasificador binario con umbral fijo"
+```
+
+**Paso 2 — Dos ramas que tocarán la misma línea.**
+
+```powershell
+git switch -c exp/umbral-alto
+(Get-Content modelo.py) -replace 'UMBRAL = 0.5', 'UMBRAL = 0.75' | Set-Content modelo.py
+git commit -am "feat(modelo): subir umbral a 0.75 para reducir falsos positivos"
+
+git switch main
+git switch -c exp/umbral-calibrado
+@"
+UMBRAL_POR_CLASE = {"urgente": 0.35, "normal": 0.60}
+
+def predecir(puntuacion, clase="normal"):
+    umbral = UMBRAL_POR_CLASE[clase]
+    return "positivo" if puntuacion > umbral else "negativo"
+"@ | Out-File -Encoding UTF8 modelo.py
+git commit -am "feat(modelo): umbral diferenciado por clase de documento"
+```
+
+**Paso 3 — Fusiona y resuelve el conflicto.**
+
+```powershell
+git switch main
+git merge exp/umbral-alto          # fusión rápida
+git merge exp/umbral-calibrado     # conflicto
+git status
+# Edita modelo.py con tu editor favorito y deja la versión correcta
+git add modelo.py
+git commit -m "merge: integrar umbral calibrado por clase"
+```
+
+**Paso 4 — Provoca la pérdida y recupérala.**
+
+```powershell
+git log --oneline
+git reset --hard HEAD~2     # "perdiste" dos commits
+git log --oneline           # ya no están
+
+git reflog                  # sí están
+git reset --hard <hash-del-merge>
+git log --oneline           # recuperados
+```
+
+**Paso 5 — Compara merge y rebase.**
+
+```powershell
+git switch -c exp/rebase main~2
+Add-Content modelo.py "`n# nota de experimento"
+git commit -am "docs(modelo): anotar experimento"
+git rebase main
+git log --oneline --graph --all
+```
+
+Observa que el hash del commit cambió tras el rebase. Ese es el punto central: rebase **no mueve** commits, los **recrea**.
+
+**Paso 6 — Prepara por fragmentos.**
+
+```powershell
+Add-Content modelo.py @"
+
+def normalizar(x):
+    return max(0.0, min(1.0, x))
+
+# TODO: revisar este umbral con el equipo
+"@
+
+git add -p modelo.py    # prepara solo la función, deja el TODO fuera
+git commit -m "feat(modelo): añadir normalización de puntuación"
+git status              # el TODO sigue sin confirmar
+```
+
+---
+
+### macOS (Mac)
+
 **Paso 1 — Inicializa.**
 
 ```bash
@@ -646,8 +746,7 @@ git commit -m "feat(modelo): clasificador binario con umbral fijo"
 
 ```bash
 git switch -c exp/umbral-alto
-sed -i '' 's/UMBRAL = 0.5/UMBRAL = 0.75/' modelo.py 2>/dev/null || \
-  sed -i 's/UMBRAL = 0.5/UMBRAL = 0.75/' modelo.py
+sed -i '' 's/UMBRAL = 0.5/UMBRAL = 0.75/' modelo.py
 git commit -am "feat(modelo): subir umbral a 0.75 para reducir falsos positivos"
 
 git switch main
@@ -669,7 +768,7 @@ git switch main
 git merge exp/umbral-alto          # fusión rápida
 git merge exp/umbral-calibrado     # conflicto
 git status
-# Edita modelo.py y deja la versión correcta
+# Edita modelo.py con tu editor favorito y deja la versión correcta
 git add modelo.py
 git commit -m "merge: integrar umbral calibrado por clase"
 ```
@@ -713,6 +812,102 @@ git add -p modelo.py    # prepara solo la función, deja el TODO fuera
 git commit -m "feat(modelo): añadir normalización de puntuación"
 git status              # el TODO sigue sin confirmar
 ```
+
+---
+
+### Linux
+
+**Paso 1 — Inicializa.**
+
+```bash
+mkdir lab-git && cd lab-git
+git init
+git config user.name "Tu Nombre"
+git config user.email "tu@correo.com"
+
+cat > modelo.py <<'EOF'
+UMBRAL = 0.5
+
+def predecir(puntuacion):
+    return "positivo" if puntuacion > UMBRAL else "negativo"
+EOF
+
+git add modelo.py
+git commit -m "feat(modelo): clasificador binario con umbral fijo"
+```
+
+**Paso 2 — Dos ramas que tocarán la misma línea.**
+
+```bash
+git switch -c exp/umbral-alto
+sed -i 's/UMBRAL = 0.5/UMBRAL = 0.75/' modelo.py
+git commit -am "feat(modelo): subir umbral a 0.75 para reducir falsos positivos"
+
+git switch main
+git switch -c exp/umbral-calibrado
+cat > modelo.py <<'EOF'
+UMBRAL_POR_CLASE = {"urgente": 0.35, "normal": 0.60}
+
+def predecir(puntuacion, clase="normal"):
+    umbral = UMBRAL_POR_CLASE[clase]
+    return "positivo" if puntuacion > umbral else "negativo"
+EOF
+git commit -am "feat(modelo): umbral diferenciado por clase de documento"
+```
+
+**Paso 3 — Fusiona y resuelve el conflicto.**
+
+```bash
+git switch main
+git merge exp/umbral-alto          # fusión rápida
+git merge exp/umbral-calibrado     # conflicto
+git status
+# Edita modelo.py con tu editor favorito y deja la versión correcta
+git add modelo.py
+git commit -m "merge: integrar umbral calibrado por clase"
+```
+
+**Paso 4 — Provoca la pérdida y recupérala.**
+
+```bash
+git log --oneline
+git reset --hard HEAD~2     # "perdiste" dos commits
+git log --oneline           # ya no están
+
+git reflog                  # sí están
+git reset --hard <hash-del-merge>
+git log --oneline           # recuperados
+```
+
+**Paso 5 — Compara merge y rebase.**
+
+```bash
+git switch -c exp/rebase main~2
+echo "# nota de experimento" >> modelo.py
+git commit -am "docs(modelo): anotar experimento"
+git rebase main
+git log --oneline --graph --all
+```
+
+Observa que el hash del commit cambió tras el rebase. Ese es el punto central: rebase **no mueve** commits, los **recrea**.
+
+**Paso 6 — Prepara por fragmentos.**
+
+```bash
+cat >> modelo.py <<'EOF'
+
+def normalizar(x):
+    return max(0.0, min(1.0, x))
+
+# TODO: revisar este umbral con el equipo
+EOF
+
+git add -p modelo.py    # prepara solo la función, deja el TODO fuera
+git commit -m "feat(modelo): añadir normalización de puntuación"
+git status              # el TODO sigue sin confirmar
+```
+
+---
 
 **Entregable:** la salida de `git log --oneline --graph --all`, la de `git reflog`, y una explicación en tres líneas de por qué el hash cambió al hacer rebase.
 
