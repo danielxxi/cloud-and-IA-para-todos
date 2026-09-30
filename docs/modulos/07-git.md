@@ -68,7 +68,7 @@ La consecuencia más profunda de ser distribuido no es técnica sino cultural: *
 
 Git nació en 2005 de un conflicto. El kernel de Linux usaba BitKeeper, una herramienta propietaria cedida gratuitamente a la comunidad. Cuando esa cesión terminó, Linus Torvalds necesitaba un reemplazo y ninguno de los existentes cumplía sus requisitos.
 
-Los escribió explícitamente:
+Los describió explícitamente:
 
 1. **Rapidez.** Las operaciones habituales deben ser instantáneas.
 2. **Diseño simple.** El modelo de datos interno debe ser comprensible.
