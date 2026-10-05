@@ -70,6 +70,26 @@ Un **harness** es el sistema de entorno, estado, verificación y control dentro 
 
 No hace al modelo más inteligente. Establece un **sistema de trabajo de ciclo cerrado** para el modelo.
 
+### Ecuación fundamental
+
+Modelo + Harness = Agente
+
+> Agente = Modelo (razonamiento) + Harness (ejecución)
+
+El modelo es el "cerebro" que genera razonamiento y decisiones. El harness es todo lo que lo rodea: herramientas, memoria, espacio de trabajo, guardrails y bucles de retroalimentación.
+
+Sin harness, un modelo puede responder preguntas. No puede ejecutar código, llamar a APIs, acceder a archivos, recordar trabajos anteriores ni completar flujos de trabajo de varios pasos de forma fiable.
+
+### Medible: el mismo modelo, mejor harness, mejores resultados
+
+La investigación de Databricks con GPT-5.5 en tareas complejas de documentos empresariales documentó exactamente esto:
+
+- Con GPT-5.4 y un harness débil: 36.10 % de precisión
+- Con GPT-5.5 (modelo mejorado) y el mismo harness débil: 40–45 %
+- Con GPT-5.5 y OfficeQA Pro Agent Harness (arquitectura sólida): 52.63 %
+
+**El cambio de harness casi duplicó la mejora del cambio de modelo.** Este es el patrón en producción: a medida que los modelos convergen en capacidad bruta, el harness determina cada vez más el rendimiento real.
+
 ```mermaid
 %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","darkMode":false,"background":"#f3f1ec","mainBkg":"#fbfaf7","primaryColor":"#fbfaf7","primaryTextColor":"#6b3a1f","primaryBorderColor":"#b9b1a1","secondaryColor":"#ead9ba","secondaryTextColor":"#6b3a1f","secondaryBorderColor":"#b9b1a1","tertiaryColor":"#c2d4cb","tertiaryTextColor":"#6b3a1f","tertiaryBorderColor":"#b9b1a1","lineColor":"#8d8676","textColor":"#6b3a1f","nodeTextColor":"#6b3a1f","nodeBorder":"#b9b1a1","labelTextColor":"#6b3a1f","titleColor":"#6b3a1f","edgeLabelBackground":"#f3f1ec","clusterBkg":"#efece4","clusterBorder":"#d8d2c6","cScale0":"#e2a98c","cScaleLabel0":"#6b3a1f","cScale1":"#bdb6e6","cScaleLabel1":"#6b3a1f","cScale2":"#e8d9b6","cScaleLabel2":"#6b3a1f","cScale3":"#b5d0c3","cScaleLabel3":"#6b3a1f","cScale4":"#e6cfc0","cScaleLabel4":"#6b3a1f","cScale5":"#cddcea","cScaleLabel5":"#6b3a1f"}}}%%
 flowchart TB
@@ -94,6 +114,21 @@ flowchart TB
 | **Verificación** | Comprobación independiente y mecánica | Suite de pruebas, linters, CI |
 | **Traspaso** | Dejar estado limpio para la siguiente sesión | Archivo de progreso, commit descriptivo |
 
+### Los ocho componentes fundamentales (perspectiva operacional)
+
+En la práctica, los harnesses de producción necesitan estos ocho componentes para resolver limitaciones específicas del modelo base:
+
+| Componente | Problema que resuelve | Implementación típica |
+| --- | --- | --- |
+| **System Prompts** | Comportamiento inconsistente o impredecible | Conjunto permanente de instrucciones que definen quién es el agente, qué intenta lograr y qué guardrails debe seguir |
+| **Herramientas y ejecución** | El modelo no puede interactuar con sistemas reales | APIs preconstruidas, ejecución de código, búsqueda, consultas a BD; idealmente ejecución de código de propósito general |
+| **Sandboxes y entornos aislados** | Riesgo de ejecutar código generado directamente en producción | Contenedores efímeros, espacios de trabajo aislados que se pueden monitorear y cerrar |
+| **Sistema de archivos duradero** | Falta de persistencia entre sesiones | Almacenamiento que permite al agente leer y escribir código, notas, planes, trabajo en progreso |
+| **Gestión de memoria y contexto** | El modelo pierde información con ventanas de contexto limitadas | Compactación de contexto, almacenamiento y recuperación de historial entre sesiones |
+| **Bucles de retroalimentación y autoverificación** | El agente declara éxito sin validar | Pruebas automáticas, inspección de resultados, autoverificación antes de continuar |
+| **Guardrails y aprobación humana** | Acciones irreversibles sin supervisión | Confirmación humana obligatoria en operaciones críticas, políticas y restricciones de acceso |
+| **Observabilidad y logging** | Imposible diagnosticar dónde falló el agente | Registros estructurados, trazas, dashboards que muestren decisiones, razonamiento y fallos |
+
 !!! tip "Harness, loop y grafo"
     Tres términos que se apilan:
 
@@ -105,7 +140,7 @@ flowchart TB
 
 ---
 
-## 3. El repositorio como fuente de verdad
+## 3. Modos de fallo comunes en arneses de producción
 
 ### El principio
 
@@ -193,7 +228,130 @@ ONNX Runtime. Se despliega en Kubernetes.
 
 ---
 
-## 4. Listas de funcionalidades como límite
+## 3. Modos de fallo comunes en arneses de producción
+
+Los arneses son potentes, pero es fácil cometer errores al diseñarlos. **La mayoría de los fallos operativos de los agentes provienen del arnés, no del modelo.** Estos son los problemas más comunes en sistemas del mundo real:
+
+| Problema | Manifestación | Causa raíz | Solución |
+| --- | --- | --- | --- |
+| **Deterioro del contexto** | La calidad del razonamiento cae en tareas largas | El contexto crece sin control; información antigua interfiere | Estrategia de compactación, resumen selectivo del historial |
+| **Sobrecarga de herramientas** | El modelo confunde qué herramienta usar | Demasiadas opciones disponibles a la vez | Exponer herramientas progresivamente; permitir código de propósito general |
+| **Conexión frágil de herramientas** | Cambios pequeños en descripciones rompen el uso | El modelo aprende por patrón local, no por semántica | Esquemas tipados explícitos, descriptores detallados, ejemplos de uso |
+| **Latencia inaceptable** | El agente tarda 10+ segundos entre pasos | Múltiples llamadas a herramientas encadenadas | Ejecución paralela, caching, fusión de operaciones |
+| **Recuperación irrelevante** | El agente genera respuestas con confianza falsa | La memoria o búsqueda devuelve información incorrecta | Mejora de retrievers, validación de relevancia antes de pasar al modelo |
+| **Verificación débil** | El agente marca tareas completas sin validar | Ausencia de autoverificación; pruebas unitarias pero no extremo a extremo | Separación generador-evaluador; herramientas de testing de usuario real |
+| **Falta de guardrails** | El agente realiza acciones irreversibles sin aprobación | No hay controles antes de operaciones críticas | Confirmación humana explícita, privilegio mínimo, políticas codificadas |
+| **Amnesia entre sesiones** | Cada nueva ventana de contexto empieza sin claridad | Falta de estado persistente o traspaso deficiente | Archivos de progreso, git history, compactación inteligente |
+
+### El factor más importante: legibilidad del runtime
+
+El salto cualitativo ocurre cuando el agente puede **observar el sistema en ejecución**, no solo leer su código.
+
+OpenAI descubrió que dar a los agentes acceso a:
+- **Registros estructurados (LogQL)**
+- **Métricas (PromQL)**
+- **Trazas distribuidas (TraceQL)**
+- **UI en ejecución (Chrome DevTools, Puppeteer MCP)**
+
+...convierte instrucciones antes imposibles en tareas tratables:
+
+- "Asegúrate de que el arranque del servicio tarda menos de 800 ms"
+- "Ningún intervalo en estas cuatro rutas críticas supera los dos segundos"
+- "El error está en compilación; valida que se corrigió antes de commmitear"
+
+Es la observabilidad del [módulo 10](10-devops-mlops.md) puesta dentro del harness. **Con este contexto disponible, el agente no solo ve qué hizo; ve qué sucedió después.**
+
+---
+
+## 4. El repositorio como fuente de verdad
+
+### El principio
+
+> Desde el punto de vista del agente, lo que no puede acceder en contexto mientras se ejecuta, efectivamente no existe.
+
+Una decisión arquitectónica acordada en una conversación de chat es, para el agente, tan inaccesible como si nunca hubiera ocurrido. Igual que lo sería para una persona que se incorpora tres meses después.
+
+Esto convierte en literal lo que en el [módulo 07](07-git.md) era una buena práctica: **el repositorio es el sistema de registro**.
+
+### El error de un solo archivo gigante
+
+El primer instinto es escribir un `AGENTS.md` enorme con todo. Falla de formas predecibles:
+
+| Problema | Por qué ocurre |
+| --- | --- |
+| **El contexto es un recurso escaso** | Un archivo gigante desplaza a la tarea, al código y a la documentación relevante |
+| **Demasiada guía es ninguna guía** | Si todo es "importante", nada lo es; el agente empieza a imitar patrones locales en vez de navegar intencionalmente |
+| **Se pudre de inmediato** | Se convierte en un cementerio de reglas obsoletas; los agentes no distinguen lo vigente |
+| **Es difícil de verificar** | Un bloque monolítico no admite comprobaciones mecánicas de cobertura o frescura |
+
+### La estructura que funciona
+
+`AGENTS.md` no es la enciclopedia: es **el índice**.
+
+```text
+AGENTS.md                    # ~100 líneas: el mapa
+ARCHITECTURE.md              # mapa de dominios y capas
+docs/
+├── decisiones/              # ADR — una decisión por archivo
+├── planes/
+│   ├── activos/
+│   ├── completados/
+│   └── deuda-tecnica.md
+├── especificaciones/
+├── referencias/
+└── generado/                # esquemas y documentación derivada
+```
+
+Esto permite **revelación progresiva**: el agente arranca con un punto de entrada pequeño y estable, y aprende dónde buscar lo siguiente, en lugar de ser abrumado desde el principio.
+
+### Plantilla de `AGENTS.md`
+
+```markdown
+# AGENTS.md
+
+## Qué es este proyecto
+Servicio de inferencia para clasificación de documentos. Python 3.12, FastAPI,
+ONNX Runtime. Se despliega en Kubernetes.
+
+## Antes de empezar cualquier sesión
+1. `pwd` — solo puedes editar dentro de este directorio.
+2. Lee `docs/progreso.md` y `git log --oneline -20`.
+3. Ejecuta `./init.sh` y verifica que el servicio arranca.
+4. Lee `feature_list.json` y elige UNA funcionalidad no completada.
+
+## Comandos
+- Entorno: `./init.sh`
+- Pruebas: `make test` (deben pasar todas antes de commit)
+- Linter y tipos: `make lint`
+- Servidor local: `make dev` → http://localhost:8000
+
+## Reglas no negociables
+- NO edites `feature_list.json` salvo para cambiar `"passes"` de false a true.
+- NO elimines ni debilites pruebas para hacerlas pasar.
+- NO hagas commit con pruebas en rojo.
+- NO instales dependencias nuevas sin registrarlo en `docs/decisiones/`.
+- NO toques `infra/produccion/` — requiere aprobación humana.
+
+## Dónde buscar
+- Arquitectura y capas: `ARCHITECTURE.md`
+- Por qué algo es como es: `docs/decisiones/`
+- Qué falta por hacer: `feature_list.json`
+- Qué pasó antes: `docs/progreso.md`
+
+## Al terminar la sesión
+1. Actualiza `docs/progreso.md`.
+2. Haz commit con mensaje descriptivo (convención en `docs/decisiones/ADR-002.md`).
+3. Deja el repositorio en estado desplegable.
+```
+
+!!! tip "Refuerza mecánicamente lo que importa"
+    La documentación sola no mantiene coherente una base de código generada por agentes. Las reglas que de verdad importan se convierten en **linters y pruebas estructurales**, no en párrafos.
+
+    Un linter personalizado cuyo mensaje de error incluye la instrucción de remediación inyecta la corrección directamente en el contexto del agente. Es mucho más efectivo que una línea en un documento.
+
+---
+
+## 5. Listas de funcionalidades como límite
 
 ### El problema que resuelven
 
@@ -234,7 +392,7 @@ La solución es una **lista de funcionalidades exhaustiva**, generada al inicio 
 
 ---
 
-## 5. Estado persistente y traspaso
+## 6. Estado persistente y traspaso
 
 ### El archivo de progreso
 
@@ -289,7 +447,7 @@ make test                        # ¿está sano lo que había?
 
 ---
 
-## 6. Verificación: el componente que más se descuida
+## 7. Verificación: el componente que más se descuida
 
 ### Por qué el agente no puede evaluarse a sí mismo
 
@@ -337,7 +495,7 @@ La corrección es dar herramientas que permitan comprobarlo como lo haría una p
 
 ---
 
-## 7. Aislamiento y seguridad
+## 8. Aislamiento y seguridad
 
 Un agente con herramientas es, funcionalmente, **un operador con permisos**. Todo lo visto en el [módulo 04](04-arquitectura-seguridad.md) aplica sin matices.
 
@@ -382,7 +540,65 @@ El riesgo específico de los agentes. Si el agente procesa contenido no confiabl
 
 ---
 
-## 8. Los costos silenciosos
+## 8. Arquitectura en capas y composición
+
+Uno de los hallazgos más importantes de OpenAI: los agentes funcionan mejor en entornos con **límites estrictos y estructura predecible**.
+
+### El principio: restricción como multiplicador
+
+En un flujo de trabajo humano, demasiadas restricciones se ven como limitantes. En un sistema generado por agentes, son **multiplicadores de velocidad**.
+
+Por qué: cuando un agente se enfrenta a decisiones sin límite, explora. Exploración = contexto gastado, desviación arquitectónica, inconsistencia.
+
+Con límites claros, el agente avanza directo. Una decisión arquitectónica válida en un lugar se replica correctamente en otros lugares porque no hay alternativas.
+
+### Estructura que funciona: dominio en capas
+
+```
+Dominio de negocio (ej. Gestión de notas)
+├── Types          (tipos e interfaces)
+├── Config         (configuración del dominio)
+├── Repo           (persistencia)
+├── Service        (lógica de negocio)
+├── Runtime        (runtime y eventos)
+└── UI             (presentación)
+
+Infraestructura transversal
+├── Auth
+├── Observabilidad
+├── Feature flags
+└── Conectores externos
+
+    ↓ Solo pueden entrar a través de Providers (una interfaz explícita)
+```
+
+**Reglas mecánicamente reforzadas:**
+
+- El código en `Types` solo depende de `Types`.
+- `Config` depende de `Types` y `Config`, nunca de capas inferiores.
+- Las dependencias siempre apuntan "hacia abajo" en la pila.
+- Nunca saltarse una capa.
+- Todo transversal entra a través de `Providers`.
+
+Esto se valida con linters especializados. Si un agente intenta violar la regla, el linter falla con un mensaje que incluye **cómo remediarlo**, inyectado directamente en el contexto del agente.
+
+### Diferencia entre "arquitectura prescriptiva" y "boundaries obligatorios"
+
+OpenAI aprendió la diferencia:
+
+- **Prescriptivo** ("preferimos que uses este patrón"): El agente lo ignora si hay un patrón local más fuerte.
+- **Obligatorio** ("estos límites se validan mecánicamente"): El agente no puede construir encima de una base rota.
+
+!!! tip "El gusto sigue siendo importante, pero diferente"
+    La arquitectura dicta límites. Dentro de esos límites, el agente tiene libertad.
+
+    Ejemplo: "Los datos en el límite deben validarse (esto es obligatorio) pero no somos prescriptivos sobre la librería de validación (esto es libertad)."
+
+    El resultado es código que no siempre coincide con las preferencias personales, pero que es correcto, mantenible y legible para futuras ejecuciones del agente.
+
+---
+
+## 9. Los costos silenciosos
 
 Un harness que funciona acelera la producción. También acelera el riesgo. Cuatro costos se acumulan sin hacer ruido:
 
@@ -410,7 +626,7 @@ Funciona como la recolección de basura: la deuda técnica es un préstamo de in
 
 ---
 
-## 9. Niveles de madurez
+## 10. Niveles de madurez
 
 | Nivel | Descripción | Señal reconocible |
 | --- | --- | --- |
@@ -425,7 +641,7 @@ La mayoría de los equipos está entre 0 y 1. **El salto de 0 a 1 es donde está
 
 ---
 
-## Caso práctico · Un equipo adopta harness engineering
+## 11. Caso práctico · Un equipo adopta harness engineering
 
 Un equipo de plataforma de cuatro personas mantiene 23 microservicios. Dedican aproximadamente el 40 % de su tiempo a tareas repetitivas: actualizar dependencias, corregir alertas de seguridad, mantener documentación sincronizada.
 
@@ -478,7 +694,7 @@ Habían probado agentes de codificación durante tres meses con resultados frust
 
 ---
 
-## Laboratorio · Construye tu primer harness
+## 12. Laboratorio · Construye tu primer harness
 
 **Objetivo:** convertir un repositorio existente en un entorno donde un agente pueda trabajar de forma fiable, y medir la diferencia.
 
@@ -543,6 +759,95 @@ echo "==> Listo. Servidor: make dev  →  http://localhost:8000"
 
 ---
 
+## 13. Escalando a múltiples agentes: gobernanza empresarial
+
+### El problema: proliferación de agentes (agent sprawl)
+
+La mayoría de las empresas no crean un único agente de IA. Crean docenas en diferentes equipos, flujos de trabajo y modelos subyacentes.
+
+Sin un enfoque consistente en el diseño de harnesses, esto genera **agent sprawl**: agentes desconectados que ningún grupo puede gobernar, evaluar o mejorar de forma confiable.
+
+Síntomas:
+
+- Agentes que acceden a datos sin políticas claras
+- Imposible auditar qué hizo cada agente
+- Modelos incomparables: uno usa GPT-5.5, otro Claude, otro Llama
+- Evaluaciones inconsistentes o inexistentes
+- Sorpresas en facturación por gastos no controlados
+
+### La respuesta: infraestructura de harness compartida
+
+En lugar de que cada equipo cree y mantenga su propia infraestructura de harnesses, las organizaciones modernas construyen una **capa de control centralizada**.
+
+**Componentes típicos:**
+
+| Componente | Función |
+| --- | --- |
+| **Plano de control** | Punto único de política, autenticación y autorización |
+| **Catálogo de herramientas** | Herramientas y APIs centralizadas; nuevas herramientas pasan por revisión |
+| **Modelos disponibles** | Lista oficial de qué modelos puedes usar y bajo qué condiciones |
+| **Evaluación centralizada** | Métricas consistentes; comparación entre agentes y equipos |
+| **Gobernanza de datos** | Qué datos puede acceder cada agente; auditoría de accesos |
+| **Cost control** | Límites de gasto por agente, equipo, modelo; alertas en tiempo real |
+| **Observabilidad unificada** | Registros, trazas y métricas agregadas; posibilidad de investigar incidentes |
+
+### Caso de Databricks: Agent Bricks
+
+Databricks construyó Agent Bricks como una plataforma de harnesses compartida que:
+
+- Se integra con **Unity Catalog** para gobernanza de datos
+- Registra todas las ejecuciones en **MLflow** para evaluación y auditoría
+- Soporta múltiples modelos: OpenAI, Anthropic, Google, ecosistemas open-source
+- Permite a los equipos crear agentes sin reinventar infraestructura
+- Centraliza políticas de costo, acceso y evaluación
+
+**Resultado:** reducción de riesgo, visibilidad, y velocidad compartida. Un equipo nuevo puede onboardear un agente en horas, no en semanas.
+
+### La estructura de un harness empresarial
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              Plano de Control Empresarial                │
+│  (Autenticación · Autorización · Auditoría · Políticas) │
+└──────────────────────┬──────────────────────────────────┘
+                       │
+         ┌─────────────┼─────────────┐
+         │             │             │
+    ┌────▼────┐   ┌────▼────┐   ┌───▼────┐
+    │ Equipo  │   │ Equipo  │   │ Equipo │
+    │    A    │   │    B    │   │   C    │
+    └────┬────┘   └────┬────┘   └───┬────┘
+         │             │             │
+    ┌────▼─────────────▼─────────────▼────┐
+    │  Catálogo de Herramientas Centrales  │
+    │  (APIs validadas · Control de calidad)
+    └─────────────────────────────────────┘
+         │             │             │
+    ┌────▼────┐   ┌────▼────┐   ┌───▼────┐
+    │ OpenAI  │   │ Claude  │   │  Llama  │
+    │  API    │   │  API    │   │  Local  │
+    └─────────┘   └─────────┘   └────────┘
+```
+
+Cada equipo construye agentes dentro de su sandbox. El plano de control hace cumplir:
+- Qué modelos pueden usar
+- Qué datos pueden acceder
+- Límites de costo y latencia
+- Quién puede revisar las ejecuciones
+
+### Ventajas de la gobernanza centralizada
+
+| Ventaja | Impacto |
+| --- | --- |
+| **Control consistente** | Las políticas se aplican a través de todos los agentes, no ad-hoc |
+| **Auditoría completa** | Rastreo de todas las acciones hasta la identidad del agente y el usuario |
+| **Prevención de drift** | Los agentes no pueden acceder a recursos no autorizados |
+| **Métricas compartidas** | Comparación justa: qué agentes funcionan mejor, cuáles cuestan más |
+| **Escalabilidad rápida** | Los nuevos equipos heredan la gobernanza, no la reinventan |
+| **Seguridad defensible** | En auditorías regulatorias, existe un argumento: "toda acción fue registrada y controlada" |
+
+---
+
 ## Conceptos clave
 
 - **Harness:** sistema de entorno, estado, verificación y control dentro del cual opera un agente.
@@ -558,6 +863,13 @@ echo "==> Listo. Servidor: make dev  →  http://localhost:8000"
 - **Ancho de banda de revisión:** capacidad humana de revisar; recurso serial y techo real del sistema.
 - **Deuda de verificación:** brecha entre lo que se aceptó y lo que se comprobó mecánicamente.
 - **Recolección de entropía:** proceso recurrente que detecta y corrige la deriva de patrones.
+- **Ocho componentes fundamentales:** system prompts, herramientas, sandboxes, almacenamiento duradero, gestión de memoria, bucles de retroalimentación, guardrails y observabilidad.
+- **Arquitectura en capas:** estructura rígida de dominios con dependencias unidireccionales, reforzada mecánicamente por linters.
+- **Restricción como multiplicador:** en sistemas de agentes, los límites claros aceleran, no ralentizan.
+- **Legibilidad del runtime:** dar al agente acceso a registros, métricas y la UI en ejecución convierte instrucciones imposibles en tareas tratables.
+- **Agent sprawl:** proliferación incontrolada de agentes sin gobernanza centralizada.
+- **Plano de control empresarial:** infraestructura compartida de harnesses que centraliza autenticación, autorización, auditoría y políticas.
+- **Arnés desechable vs. durable:** arneses ligeros para una tarea vs. infraestructura que evoluciona con la organización.
 
 ---
 
@@ -576,6 +888,11 @@ echo "==> Listo. Servidor: make dev  →  http://localhost:8000"
 - Un agente con herramientas es un operador con permisos. La inyección de prompt se mitiga con arquitectura, no con prompts.
 - Tu ancho de banda de revisión es el techo del sistema. La inversión con retorno está en abaratar la revisión, no en generar más.
 - El salto del nivel 0 al 1 es el de mayor retorno, y se consigue con tres archivos.
+- **Medible:** el mismo modelo con un harness sólido puede superar a un modelo más potente con un harness débil en hasta un 30 % de mejora en precisión.
+- **Arquitectura:** los agentes necesitan límites estrictos y estructura predecible. Restricción = velocidad en sistemas de agentes.
+- **Escalabilidad:** sin gobernanza centralizada, múltiples agentes generan agent sprawl. Una infraestructura compartida de harnesses resuelve esto.
+- **Inicializador vs. Codificador:** el patrón de Anthropic demuestra que la primera sesión (inicializadora) debe preparar el entorno; las posteriores hacen progreso incremental.
+- **El repositorio como sistema de registro:** documentación en Google Docs, Slack o en mentes humanas es invisible para el agente. Solo lo que esté en el repositorio, versionado, cuenta.
 
 ---
 
@@ -599,11 +916,22 @@ echo "==> Listo. Servidor: make dev  →  http://localhost:8000"
 
 ## Lectura adicional
 
-- [OpenAI · Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/) — el informe del equipo que construyó un producto de un millón de líneas sin código escrito a mano.
-- [Anthropic · Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — los patrones de fallo y las soluciones de inicializador y lista de funcionalidades.
+### Recursos principales complementarios
+
+**Estos tres recursos profundizan en los conceptos del módulo:**
+
+- [**Databricks · ¿Qué es un arnés de agente de AI?**](https://www.databricks.com/es/blog/ai-harness) — guía completa sobre los 8 componentes fundamentales de un harness, modos de fallo comunes en producción, diferencia entre ingeniería de prompts y de arneses, y gobernanza empresarial de agentes a escala.
+
+- [**OpenAI · Ingeniería de sistemas: Codex en un mundo centrado en agentes**](https://openai.com/es-419/index/harness-engineering/) — reporte del equipo que construyó un producto de un millón de líneas sin código escrito a mano. Cubre: repositorio como sistema de registro, redefinición del rol del ingeniero, legibilidad del runtime, arquitectura en capas con linters mecánicos, y autonomía progresiva.
+
+- [**Anthropic · Effective harnesses for long-running agents**](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — patrones de fallo documentados en agentes de larga duración y soluciones prácticas: agente inicializador vs. codificador, lista de funcionalidades, progreso incremental, testing de usuario real.
+
+### Recursos adicionales
+
 - [Anthropic · Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) — la distinción entre workflow y agente, y los cinco patrones base.
 - [Learn Harness Engineering](https://walkinglabs.github.io/learn-harness-engineering/es/) — curso completo en español sobre el tema.
 - [AGENTS.md](https://agents.md/) — la convención de archivo de instrucciones para agentes.
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — inyección de prompt y riesgos asociados.
 - [Simon Willison · Designing Agentic Loops](https://simonwillison.net/) — reflexiones prácticas sobre diseño de bucles de agente.
 - [Módulo 15 · Ingeniería de Grafos](15-graph-engineering.md) — qué pasa cuando hay más de un agente.
+
