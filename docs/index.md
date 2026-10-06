@@ -9,7 +9,7 @@ Construir un modelo es la parte visible. Sostenerlo en producción —con datos 
 
 Este curso trata de esa parte: **la infraestructura sobre la que se apoya la inteligencia artificial**, desde el centro de datos hasta el sistema agéntico que supervisa su propio trabajo.
 
-Son **14 módulos** impartidos en **7 sesiones de 3 horas**, organizados en seis bloques que se apoyan uno sobre otro. Cada módulo combina teoría, casos reales de la región, un laboratorio práctico y ejercicios de evaluación.
+Son **16 módulos** impartidos en **8 sesiones de 3 horas**, organizados en seis bloques que se apoyan uno sobre otro. Cada módulo combina teoría, casos reales de la región, un laboratorio práctico y ejercicios de evaluación.
 
 ---
 
@@ -21,7 +21,7 @@ Son **14 módulos** impartidos en **7 sesiones de 3 horas**, organizados en seis
 
     ---
 
-    Los 14 capítulos teóricos, del cómputo en la nube a la ingeniería de grafos.
+    Los 16 capítulos teóricos, del cómputo en la nube a los modelos System One.
 
     [:octicons-arrow-right-24: Ver el temario](modulos/index.md)
 
@@ -61,8 +61,10 @@ La infraestructura para IA no es una lista de herramientas: es una pila donde ca
 %%{init:{"theme":"base","themeVariables":{"fontFamily":"Inter, sans-serif","darkMode":false,"background":"#f3f1ec","mainBkg":"#fbfaf7","primaryColor":"#fbfaf7","primaryTextColor":"#6b3a1f","primaryBorderColor":"#b9b1a1","secondaryColor":"#ead9ba","secondaryTextColor":"#6b3a1f","secondaryBorderColor":"#b9b1a1","tertiaryColor":"#c2d4cb","tertiaryTextColor":"#6b3a1f","tertiaryBorderColor":"#b9b1a1","lineColor":"#8d8676","textColor":"#6b3a1f","nodeTextColor":"#6b3a1f","nodeBorder":"#b9b1a1","labelTextColor":"#6b3a1f","titleColor":"#6b3a1f","edgeLabelBackground":"#f3f1ec","clusterBkg":"#efece4","clusterBorder":"#d8d2c6","cScale0":"#e2a98c","cScaleLabel0":"#6b3a1f","cScale1":"#bdb6e6","cScaleLabel1":"#6b3a1f","cScale2":"#e8d9b6","cScaleLabel2":"#6b3a1f","cScale3":"#b5d0c3","cScaleLabel3":"#6b3a1f","cScale4":"#e6cfc0","cScaleLabel4":"#6b3a1f","cScale5":"#cddcea","cScaleLabel5":"#6b3a1f"}}}%%
 flowchart TB
     subgraph VI["VI · Sistemas agénticos"]
-        M13["13 · Harness Engineering"]
-        M14["14 · Graph Engineering"]
+        M13["13 · Fundamentos de IA y Agentes"]
+        M14["14 · Ingeniería de Harness"]
+        M15["15 · Ingeniería de Grafos"]
+        M16["16 · Jev y Modelos System One"]
     end
     subgraph V["V · IA aplicada"]
         M11["11 · Visión: fundamentos"]

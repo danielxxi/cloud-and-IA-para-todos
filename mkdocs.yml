@@ -146,6 +146,7 @@ nav:
           - 13 · Fundamentos de Arquitectura de IA y Agentes: modulos/13-fundamentos-arquitectura-ia-agentes.md
           - 14 · Ingeniería de Harness para IA: modulos/14-harness-engineering.md
           - 15 · Ingeniería de Grafos para IA: modulos/15-graph-engineering.md
+          - 16 · Introducción a Jev y Modelos System One: modulos/16-jev-system-one.md
   - Prácticas:
       - practicas/index.md
       - P01 · Comparar modelos de servicio y costos: practicas/p01-modelos-costos.md

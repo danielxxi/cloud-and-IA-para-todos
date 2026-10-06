@@ -7,7 +7,6 @@ tags:
 # Módulo 13 · Fundamentos de Arquitectura de IA y Agentes
 
 <div class="modulo-meta" markdown>
-<span>:material-clock-outline: 3 horas</span>
 <span>:material-stairs: Nivel intermedio</span>
 <span>:material-link-variant: Requiere módulos 01-04</span>
 </div>
@@ -20,7 +19,7 @@ Pero la analogía tiene un límite importante, y conviene señalarlo desde el pr
 
 ---
 
-## 1. Guión y Material para Clase Magistral (3 Horas)
+## 1. Guión y Material para Clase Magistral
 
 ---
 

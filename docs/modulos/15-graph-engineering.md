@@ -694,3 +694,4 @@ Esta suele ser la parte más reveladora del ejercicio.
 - [Addy Osmani · Loop Engineering](https://addyosmani.com/blog/loop-engineering/) — el conocimiento previo: diseñar el sistema que hace prompting en tu lugar.
 - [LangChain · The Best AI Agent Frameworks](https://www.langchain.com/resources/ai-agent-frameworks) — comparación de los motores principales.
 - [Módulo 14 · Ingeniería de Harness](14-harness-engineering.md) — la base sobre la que se apoya todo esto.
+- [Módulo 16 · Introducción a Jev y Modelos System One](16-jev-system-one.md) — decisiones rápidas y tipadas en nodos de grafo.
