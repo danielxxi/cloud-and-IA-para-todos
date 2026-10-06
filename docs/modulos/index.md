@@ -158,5 +158,13 @@ Siete sesiones de tres horas, organizadas en seis bloques. Cada bloque se apoya 
     
     [:octicons-arrow-right-24: Abrir módulo](15-graph-engineering.md)
 
+-   **16 · Introducción a Jev y los Modelos System One**
+
+    ---
+    
+    Una nueva categoría de modelo de IA: decisiones rápidas, tipadas y verificables. System One thinking. Cuándo usar Jev, cómo integrarlo en un harness y patrones de implementación.
+    
+    [:octicons-arrow-right-24: Abrir módulo](16-jev-system-one.md)
+
 </div>
 
