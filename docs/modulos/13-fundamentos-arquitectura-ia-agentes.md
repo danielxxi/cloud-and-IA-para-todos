@@ -99,6 +99,7 @@ Un agente sin memoria está condenado a repetir errores y perder el contexto de 
 2. **Memoria a Corto Plazo (Short-Term Memory):** Corresponde al historial de conversación o hilo de ejecución de la sesión actual. Para evitar exceder el límite de la ventana de contexto del modelo, se emplean técnicas como:
    * *Sliding Windows (Ventanas Deslizantes):* Mantener solo los últimos $N$ mensajes.
    * *Summary Memory (Memoria Condensada):* Usar un modelo secundario para resumir la conversación pasada cuando supera un umbral de tokens.
+
 3. **Memoria a Largo Plazo (Long-Term Memory & RAG):** Permite al agente recordar información de sesiones pasadas o consultar bases de conocimiento externas masivas. Se implementa mediante:
    * **Retrieval-Augmented Generation (RAG):** El proceso de convertir documentos en *embeddings* (vectores numéricos de significado semántico), almacenarlos en una base de datos vectorial (como Pinecone, Qdrant o pgvector) y realizar búsquedas por similitud de coseno para inyectar solo la información relevante en la memoria de trabajo del agente.
 

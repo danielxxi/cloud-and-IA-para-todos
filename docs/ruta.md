@@ -25,6 +25,7 @@ flowchart TB
     M10 --> M13
     M13 --> M14["14 · Ingeniería de Harness para IA"]
     M14 --> M15["15 · Ingeniería de Grafos para IA"]
+    M14 --> M16["16 · Introducción a Jev y Modelos System One"]
     classDef default fill:#fbfaf7,stroke:#b9b1a1,stroke-width:1px,color:#6b3a1f;
 ```
 
@@ -50,19 +51,19 @@ flowchart TB
 
     Te interesa que todo corra y se pueda revertir.
 
-    `02 → 04 → 07 → 08 → 09 → 10 → 13 → 14 → 15`
+    `02 → 04 → 07 → 08 → 09 → 10 → 13 → 14 → 15 → 16`
 
 === "Desarrollador que se mueve a IA"
 
     Te interesa llegar a producción con un modelo propio.
 
-    `01 → 02 → 07 → 08 → 09 → 11 → 12 → 13 → 14`
+    `01 → 02 → 07 → 08 → 09 → 11 → 12 → 13 → 14 → 16`
 
 === "Ruta completa (diplomado)"
 
-    Las 15 sesiones en orden, una por semana.
+    Las 16 sesiones en orden, una por semana.
 
-    `01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11 → 12 → 13 → 14 → 15`
+    `01 → 02 → 03 → 04 → 05 → 06 → 07 → 08 → 09 → 10 → 11 → 12 → 13 → 14 → 15 → 16`
 
 ## Progresión de las prácticas
 
@@ -96,5 +97,5 @@ Si solo puedes hacer tres: **P05**, **P06** y **P07**. Son las que convierten un
 | III · Datos | 2 | 6 | 6 |
 | IV · Ingeniería de plataforma | 4 | 12 | 14 |
 | V · IA aplicada | 2 | 6 | 8 |
-| VI · Sistemas agénticos | 3 | 9 | 9 |
-| **Total** | **15** | **45** | **48** |
+| VI · Sistemas agénticos | 4 | 12 | 12 |
+| **Total** | **16** | **48** | **50** |
