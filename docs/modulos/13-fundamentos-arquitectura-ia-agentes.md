@@ -56,12 +56,14 @@ Para diseñar software moderno impulsado por IA, debemos distinguir claramente t
   * *Determinismo/Autonomía:* Alta autonomía. El camino para resolver el problema no está explícitamente programado; se descubre y ejecuta en tiempo de ejecución.
 
 #### 1.3. Principios de Diseño en la Arquitectura de IA (15 min)
-Al construir sistemas basados en agentes, los ingenieros de software deben aplicar cuatro principios arquitectónicos fundamentales:
+Al construir sistemas basados en agentes, los ingenieros de software deben aplicar seis principios arquitectónicos fundamentales:
 
 1. **Modularidad:** El modelo no debe ser el monolito del sistema. La lógica de herramientas, el almacenamiento de memoria y el motor de decisión deben estar desacoplados. Esto permite cambiar el modelo subyacente (por ejemplo, pasar de OpenAI a un modelo local vía Ollama) sin rehacer la lógica del sistema.
 2. **Manejo de Latencia y Costes:** Cada llamada a un LLM añade cientos de milisegundos (o segundos) de latencia y un coste financiero medido en tokens. La arquitectura debe minimizar el número de pasos innecesarios del agente.
 3. **Determinismo Progresivo:** Las tareas críticas (como validación de esquemas, cobros con tarjeta o guardado en BD) deben ejecutarse mediante código tradicional (determinista), reservando la capacidad del LLM solo para tareas que requieran razonamiento, ambigüedad o síntesis de lenguaje natural (no determinista).
 4. **Tolerancia a Fallos y Observabilidad:** Dado que las respuestas de un modelo no son 100% predecibles, la arquitectura debe incluir salvaguardas (*guardrails*), reintentos con prompts corregidos y trazabilidad completa de cada decisión tomada por el agente.
+5. **Escalabilidad Horizontal:** La arquitectura debe permitir que múltiples instancias de agentes ejecuten tareas en paralelo sin interferencias. Esto requiere gestión de estado centralizada y componentes sin estado.
+6. **Integración Empresarial:** Los agentes no operan aislados. Deben integrarse fluidamente con sistemas heredados, APIs externas, bases de datos y flujos de negocio existentes sin interrupciones.
 
 ---
 
@@ -143,6 +145,58 @@ El ciclo de vida operativo de un agente se rige por el bucle **Perceive-Plan-Act
 
 ---
 
+### MÓDULO 2.5: Las Cinco Capas de Arquitectura de un Agente de IA (Extensión)
+
+La arquitectura moderna de un agente no es un componente único, sino un **stack de cinco capas fundamentales** que trabajan juntas. Esta estructura es resultado del análisis convergente de OpenAI, Anthropic y AWS, que coinciden en la mayoría de los primitivos.
+
+#### Capa 1: El Núcleo Funcional (5 Primitivos Esenciales)
+
+Todo agente requiere, como mínimo, estos cinco componentes que ningún agente funcional puede omitir:
+
+| Componente | Descripción | Implementación Típica |
+| --- | --- | --- |
+| **Modelo (LLM)** | El motor de razonamiento que interpreta intenciones y toma decisiones | OpenAI API, Claude, Llama, Gemini |
+| **Contexto e Instrucciones** | System prompt + datos inyectados en tiempo de ejecución | System message, RAG, embeddings vectoriales |
+| **Herramientas (Tools)** | Interfaces que permiten al modelo interactuar con sistemas reales | APIs preconstruidas, function calling, ejecutables |
+| **Estado y Memoria** | Recordación entre sesiones y durante la ejecución | Historial de mensajes, vector stores, BD persistente |
+| **Bucle de Orquestación** | El ciclo que diferencia un agente de un workflow lineal | Agent loop, ReAct pattern, routing dinámico |
+
+#### Capa 2: Decisiones de Diseño (Policy y Output Contract)
+
+Estas decisiones completan el núcleo y definen comportamiento específico de dominio:
+
+- **Policy (Reglas de Negocio del Agente):** Las reglas que codifican inteligencia de dominio. Ejemplo: "Si la probabilidad de lluvia supera el 40%, incluye protección contra la lluvia en la recomendación". OpenAI recomienda usar prompts base con variables de policy para mantener coherencia.
+- **Contrato de Salida (Structured Output):** Formato esperado de la respuesta: texto libre, JSON tipado, listas formateadas, etc.
+
+#### Capa 3: Control en Producción (Guardrails, Permisos y Condiciones de Parada)
+
+Estas garantizan operación segura y predecible:
+
+- **Guardrails de Entrada:** Filtran inyecciones de prompt, peticiones fuera de dominio, contenido malicioso.
+- **Guardrails de Salida:** Verifican que la respuesta no exponga datos sensibles, claves de API o información restringida.
+- **Permisos y Entorno:** Definen qué puede hacer el agente: credenciales con privilegio mínimo, recursos específicos accesibles, límites de red.
+- **Condición de Parada:** Máximo número de iteraciones, timeout máximo, presupuesto de tokens máximo.
+
+#### Capa 4: Operativa (Trazabilidad, Evaluaciones y Fiabilidad)
+
+Hacen el sistema observable y confiable en producción:
+
+- **Trazabilidad (Observabilidad):** Registro de cada decisión, herramienta invocada, parámetros, tokens consumidos. Herramientas: LangSmith, Phoenix, Helicone.
+- **Evaluaciones (Evals):** Métricas de calidad sistemáticas (selección correcta de herramientas, fidelidad de respuestas, trayectoria óptima).
+- **Fiabilidad:** Reintentos con backoff exponencial, fallback entre modelos, caché de resultados, degradación elegante ante fallos.
+
+#### Capa 5: Extensiones Opcionales (Según Complejidad y Escala)
+
+Se añaden cuando la lógica o la escala lo requiere:
+
+- **MCP (Model Context Protocol):** Estándar abierto de Anthropic para exponer herramientas y datos de forma estandarizada.
+- **Skills:** Paquetes encapsulados de instrucciones + código + recursos reutilizables en múltiples agentes.
+- **RAG (Retrieval-Augmented Generation):** Base de conocimiento externa (vector stores) para contexto ampliado sin saturar el modelo.
+- **Multiagente:** Delegación de subtareas a agentes especializados con coordinación centralizada.
+- **Human-in-the-Loop:** Pausas explícitas para aprobación humana en acciones irreversibles (pagos, cambios de datos, despliegues).
+
+---
+
 ### MÓDULO 3: Patrones de Razonamiento, Planificación y Coordinación (45 minutos)
 
 #### 3.1. El Patrón ReAct: Reasoning and Acting (15 min)
@@ -190,10 +244,33 @@ Este ciclo se repite en bucle hasta que el pensamiento concluye que la tarea se 
 #### 3.3. Introducción a Sistemas Multiagente (15 min)
 Cuando una tarea es demasiado compleja o abarca múltiples dominios, un solo agente con decenas de herramientas empieza a perder efectividad debido a la saturación de contexto y la confusión en la elección de funciones. La solución es dividir la carga cognitiva entre **Múltiples Agentes Especializados**.
 
+### Comparativa: Sistemas de Un Agente vs. Multiagente
+
+OpenAI y Anthropic convergen en una recomendación: **empieza siempre con un único agente bien diseñado**. Solo escalas a multiagente cuando una de estas condiciones se cumpla:
+
+| Aspecto | Un Solo Agente | Múltiples Agentes |
+| --- | --- | --- |
+| **Complejidad Cognitiva** | Tareas bien definidas en un dominio | Tareas que requieren especialización por subdominios |
+| **Gestión de Herramientas** | <15 herramientas bien diferenciadas | >15 herramientas o con solapamiento significativo |
+| **Depuración y Mantenimiento** | Directa; una salida de contexto | Requiere trazado distribuido y coordinación |
+| **Costo de Token** | Eficiente; contexto compacto | Potencialmente más alto; coordinación + overhead |
+| **Tolerancia a Fallos** | Fallo del agente = fallo total | Fallo parcial; otros agentes pueden compensar |
+| **Latencia Esperada** | Baja (una iteración) | Variable; depende de coordinación |
+
 * **Patrones Topológicos de Sistemas Multiagente:**
   1. **Jerárquico (Manager / Workers):** Un agente Orquestador recaba la solicitud del usuario, la divide en subtareas y delega el trabajo a agentes especializados (Ej: Agente Investigador, Agente Programador). Los trabajadores devuelven sus resultados al Manager, quien consolida la respuesta.
-  2. **Secuencial (Pipeline):** El trabajo fluye en línea recta. La salida validada del Agente A es la entrada directa del Agente B.
+  2. **Secuencial (Pipeline):** El trabajo fluye en línea recta. La salida validada del Agente A es la entrada directa del Agente B, con puntos de control intermedios.
   3. **Red / Colaborativo (Peer-to-Peer / Debate):** Agentes independientes conversan en un bus de mensajes compartido. Por ejemplo, dos agentes con posiciones opuestas debaten un tema hasta llegar a un consenso validado por un árbitro.
+
+### Antipatrón Común: Agent Sprawl
+
+La mayoría de empresas no crean un único agente. Crean docenas en diferentes equipos, sin gobernanza centralizada. Esto genera **agent sprawl**: 
+- Agentes desconectados que no comparten estándares
+- Imposible auditar qué hace cada agente  
+- Modelos incomparables (uno usa GPT, otro Claude, otro Llama)
+- Sorpresas en facturación por gastos no controlados
+
+La solución es una **infraestructura centralizada de harnesses** que impone estándares: catálogo compartido de herramientas, plano de control común, gobernanza de datos y políticas consistentes.
 
 ---
 
@@ -222,6 +299,36 @@ Debido a la naturaleza no determinista de los agentes, la depuración tradiciona
   * *Tool Selection Accuracy:* ¿Eligió la herramienta correcta en el momento adecuado?
   * *Trajectory Accuracy:* ¿Siguió la secuencia de pasos lógica ideal para resolver la tarea?
   * *Faithfulness:* ¿La respuesta final está basada exclusivamente en las observaciones obtenidas sin inventar datos?
+
+### MÓDULO 4.4: Consideraciones Empresariales y Escalabilidad en Producción (Extensión)
+
+Más allá de los vectores de ataque, un agente en producción debe considerar factores organizacionales que determinan su éxito real:
+
+#### Escalabilidad Horizontal y Gestión de Estado
+
+Los sistemas empresariales deben gestionar cargas impredecibles manteniendo rendimiento constante:
+
+- **Componentes Sin Estado:** Los agentes deben ser replicables horizontalmente, con el estado centralizado en una BD o cache distribuida.
+- **Gestión de Contexto Eficiente:** El contexto es un recurso finito. Un buen agente inyecta solo lo mínimo necesario para que el modelo tome la mejor decisión, no todo lo que puede caber en el prompt.
+- **Optimización de Latencia:** Cada capa de arquitectura añade tiempo. Caché de resultados, paralización de llamadas y reducción de round-trips son críticas.
+
+#### Tolerancia a Fallos e Integración Existente
+
+Las empresas rara vez comienzan desde cero:
+
+- **Compatibilidad de APIs:** El agente debe soportar REST, mensajería, conexiones SQL y WebSockets de forma nativa.
+- **Sincronización de Datos:** Balance entre datos en tiempo real y procesamiento por lotes. Arquitecturas impulsadas por eventos suelen ser la solución.
+- **Autenticación y Autorización:** El agente hereda del sistema de identidad empresarial: Active Directory, LDAP, SSO. Los permisos basados en roles deben extenderse automáticamente a las interacciones con IA.
+
+#### Gobernanza Centralizada: Prevenir el Agent Sprawl
+
+Cuando surgen múltiples agentes sin coordinación central:
+
+- **Plano de Control:** Punto único de política, autenticación, autorización y auditoría.
+- **Catálogo de Herramientas:** APIs centralizadas validadas; nuevas herramientas requieren revisión.
+- **Modelo de Reservas:** Lista oficial de qué modelos se permiten y bajo qué términos.
+- **Evaluación Unificada:** Métricas consistentes entre agentes y equipos para identificar los más efectivos.
+- **Control de Costes:** Límites de gasto por agente, equipo y modelo con alertas en tiempo real.
 
 ---
 
@@ -425,6 +532,115 @@ if __name__ == "__main__":
 
 ---
 
+## 4. Frameworks, Patrones de Routing y Mejores Prácticas
+
+### 4.1. Patrones Avanzados de Enrutamiento (Routing)
+
+El *routing* es el proceso de decidir qué herramienta o agente invocar como siguiente paso. Las decisiones de routing definen la determinismo del sistema:
+
+| Patrón | Mecanismo | Caso de Uso | Riesgo |
+| --- | --- | --- | --- |
+| **Rule-based Routing** | Reglas predefinidas en código (detección de palabras clave) | Categorización simple, flujos muy estructurados | Rigidez; no maneja variedad lingüística |
+| **Semantic Routing** | LLM interpreta intención y redirige según significado | Casos de uso complejos con semántica variable | Latencia adicional; costo de LLM extra |
+| **Hierarchical Routing** | Agente master delega a sub-agentes especializados | Sistemas multiagente con jerarquía clara | Coordinación compleja; overhead comunicacional |
+| **LLM-based Routing** | El LLM principal tiene acceso a metadata de herramientas y decide dinámicamente | Mayor autonomía; adaptación al contexto | Selección de herramienta errónea; iteraciones innecesarias |
+| **Auction-based Routing** | Cada sub-agente presenta una "oferta" (costo, tiempo, confianza) | Contextos competitivos; optimización multi-objetivo | Complejidad de coordinación muy alta |
+
+OpenAI recomienda comenzar con **rule-based o LLM-based routing** antes de escalar a patrones más complejos.
+
+### 4.2. Patrones Adicionales de Agentes (Más Allá de ReAct)
+
+#### Pattern: Reflective Agents (Agentes Reflexivos)
+
+Un patrón donde el LLM **critica su propia salida** antes de entregarla:
+
+```
+1. Generador invoca herramientas y produce respuesta
+2. Crítico: "¿Esta respuesta es correcta? ¿Tiene evidencia?"
+3. Si falla validación → Regresa al Generador para corrección
+4. Si pasa → Entrega al usuario
+```
+
+Mejora calidad pero añade latencia y tokens. Usar solo para tareas críticas.
+
+#### Pattern: Human-in-the-Loop (Agentes con Supervisión)
+
+Para acciones irreversibles o decisiones de alto riesgo:
+
+```
+1. Agente genera propuesta (ej: "Enviar email a X con contenido Y")
+2. Sistema pausa y pide aprobación humana
+3. Humano revisa y aprueba/rechaza/modifica
+4. Agente ejecuta solo si fue aprobado
+```
+
+Crítico para: transferencias financieras, cambios de datos críticos, comunicaciones oficiales.
+
+### 4.3. Ecosistema de Frameworks (2025)
+
+La elección de framework depende del stack existente, complejidad y presupuesto:
+
+| Framework | Lenguaje | Especialidad | Curva de Entrada | Observabilidad Integrada |
+| --- | --- | --- | --- | --- |
+| **LangGraph** | Python | Grafos de estado complejos | Media-Alta | Básica |
+| **CrewAI** | Python | Multiagente colaborativo | Baja | Media |
+| **OpenAI Agents SDK** | Python | Integración OpenAI nativa | Baja | Alta (integrada) |
+| **Strands (AWS)** | Python, TypeScript | Model-driven, infraestructura AWS | Media | Media |
+| **Pydantic AI** | Python | Type-safe con validación | Media | Básica |
+| **Mastra** | TypeScript | Backend Node.js | Media | Básica |
+| **FME (No-code)** | Visual | Agentes + data pipelines | Muy Baja | Alta |
+| **Latenode (No-code)** | Visual | Flujos modulares, estado | Muy Baja | Media |
+
+**Recomendación de Anthropic (vigente en 2025):** Comienza con la API del modelo directamente. Muchos patrones se implementan en pocas líneas. Solo adopta framework cuando realmente lo necesites.
+
+### 4.4. Mejores Prácticas de Implementación
+
+Basadas en lecciones de producción de FME, WebReactiva y LateNode:
+
+#### 1. Simplicidad Primera, Escalabilidad Después
+
+- Empieza con un agente simple (modelo + una herramienta + un prompt).
+- Prueba y mide resultados antes de añadir capas.
+- El salto de un agente débil a uno con arquitectura sólida produce mayor ganancia que actualizar el modelo base.
+
+#### 2. Define Éxito Antes de Construir
+
+Sin criterios explícitos de "buen rendimiento", no tienes forma de medir ni mejorar:
+
+```
+❌ Malo: "El agente debe responder sobre el clima"
+✓ Bien: "El agente recomienda ropa basada en datos meteorológicos REALES, 
+         pide aclaración si faltan datos, nunca inventa datos del tiempo,
+         rechaza preguntas fuera de dominio"
+```
+
+#### 3. Contexto es Dinero
+
+- Cada token extra que inyectas tiene un costo inmediato y reduce capacidad de razonamiento.
+- Usa solo datos relevantes. Preferir "especificidad" sobre "completitud".
+- Implementa compactación de contexto para sesiones largas.
+
+#### 4. Guardrails Estratificados
+
+- No confíes solo en prompts. Implementa:
+  - Validación determinista (reglas en código)
+  - Evaluación por modelo ligero (pre-check)
+  - Revisión de salida (post-check)
+
+#### 5. Monitoreo desde Día 1
+
+- Registra cada invocación: prompt exacto, herramientas utilizadas, duración, tokens, costo, salida.
+- Establece alertas para: latencia > límite, costo > presupuesto, errores repetidos.
+- Las métricas iniciales guían iteraciones futuras.
+
+#### 6. Testing de Usuario Real Temprano
+
+- Las pruebas unitarias en verde no garantizan que el agente funcione extremo-a-extremo.
+- Caso documentado: agente pasaba todas las pruebas internas pero fallaba en tarea real.
+- Solución: testing con usuarios reales o simulaciones creíbles.
+
+---
+
 ## 3. Bibliografía y Lecturas Recomendadas
 
 ### 3.1. Artículos Académicos Clave (Papers Fundamentales)
@@ -450,3 +666,26 @@ if __name__ == "__main__":
 1. **LangGraph (LangChain ecosystem):** Documentación sobre construcción de agentes cíclicos basados en grafos de estado. [https://langchain-ai.github.io/langgraph/](https://langchain-ai.github.io/langgraph/?utm_source=gemini)
 2. **LlamaIndex:** Guía de integración de arquitectura RAG y memoria de agentes. [https://docs.llamaindex.ai/](https://docs.llamaindex.ai/?utm_source=gemini)
 3. **OpenAI Function Calling & Assistants API Guide:** [https://platform.openai.com/docs/guides/function-calling](https://platform.openai.com/docs/guides/function-calling?utm_source=gemini)
+
+### 3.4. Recursos Especializados en Arquitectura de Agentes (2025-2026)
+
+#### Recursos Latinoamericanos y de Referencia Global
+
+1. **Web Reactiva (2025): "Arquitectura de agentes de IA: componentes, capas y frameworks para developers"**
+   - [https://www.webreactiva.com/blog/agentes-ia-programadores](https://www.webreactiva.com/blog/agentes-ia-programadores)
+   - *Descripción:* Desglose completo de los 5 primitivos esenciales, las 5 capas de arquitectura, patrones operativos, comparativa de frameworks (LangGraph, CrewAI, OpenAI Agents SDK, Strands, Pydantic AI, Mastra, Smolagents). Especialmente valioso para developers hispanohablantes.
+   - *Conceptos clave cubiertos:* Context engineering, context rot, policy vs guardrails, definición de "qué es un agente" (no un chatbot), MCP, skills, RAG, human-in-the-loop.
+
+2. **FME by Safe (2025): "AI Agent Architecture: Tutorial & Examples"**
+   - [https://fme.safe.com/guides/ai-agent-architecture/](https://fme.safe.com/guides/ai-agent-architecture/)
+   - *Descripción:* Cobertura exhaustiva de componentes (LLMs, memoria contextual, funciones/sub-agentes, routing). Patrones de arquitectura (rule-based, semantic, hierarchical, auction-based routing), ReAct agents, human-in-the-loop, reflective agents.
+   - *Perspectiva única:* Énfasis en integración de datos complejos (geoespaciales, IoT) con agentes mediante no-code. Comparativa code-based vs. no-code platforms.
+   - *Casos de uso:* Ejemplos con LangGraph, buenas prácticas (simple architectures, evaluation metrics, prompt engineering over fine-tuning).
+
+3. **LateNode (2025): "Arquitectura de IA agéntica: diseño de sistemas inteligentes"**
+   - [https://latenode.com/es/blog/arquitectura-de-ia-agentica-diseno-de-sistemas-inteligentes](https://latenode.com/es/blog/arquitectura-de-ia-agentica-diseno-de-sistemas-inteligentes)
+   - *Descripción:* Enfoque en consideraciones empresariales y patrones de arquitectura. Detalle en escalabilidad, tolerancia a fallos, integración con sistemas heredados, sincronización de datos, gobernanza centralizada.
+   - *Innovación destacada:* Comparativa detallada entre arquitecturas por capas, pizarra e híbridas. Prevención de "agent sprawl" mediante control centralizado. Métodos low-code/visual como democratizadores.
+   - *Secciones clave:* Desafíos comunes en producción (gestión de estado, acumulación de latencia, drift de configuración), soluciones de implementación automatizada.
+
+---
