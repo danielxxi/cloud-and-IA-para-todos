@@ -934,4 +934,5 @@ Cada equipo construye agentes dentro de su sandbox. El plano de control hace cum
 - [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/) — inyección de prompt y riesgos asociados.
 - [Simon Willison · Designing Agentic Loops](https://simonwillison.net/) — reflexiones prácticas sobre diseño de bucles de agente.
 - [Módulo 15 · Ingeniería de Grafos](15-graph-engineering.md) — qué pasa cuando hay más de un agente.
+- [Módulo 16 · Introducción a Jev y Modelos System One](16-jev-system-one.md) — decisiones rápidas y tipadas dentro del harness.
 

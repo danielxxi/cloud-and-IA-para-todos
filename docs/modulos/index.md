@@ -1,6 +1,6 @@
 # Módulos
 
-Siete sesiones de tres horas, organizadas en seis bloques. Cada bloque se apoya en el anterior.
+Ocho sesiones de tres horas, organizadas en seis bloques. Cada bloque se apoya en el anterior.
 
 ---
 

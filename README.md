@@ -4,7 +4,7 @@ Repositorio de aprendizaje de arquitectura en Nube e Inteligencia Artificial.
 
 Curso completo y material docente sobre **infraestructura moderna para Inteligencia Artificial**: desde los fundamentos de la nube hasta la ingeniería de sistemas agénticos.
 
-El sitio se publica con [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) y está pensado para impartirse en **7 sesiones de 3 horas**.
+El sitio se publica con [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) y está pensado para impartirse en **8 sesiones de 3 horas**.
 
 📖 **Sitio publicado:** <https://danielxxi.github.io/cloud-and-IA-para-todos/>
 
@@ -17,7 +17,7 @@ El sitio se publica con [MkDocs Material](https://squidfunk.github.io/mkdocs-mat
 | III · Datos | 05 Big Data · 06 Edge, Fog e IoT |
 | IV · Ingeniería de plataforma | 07 Git · 08 Docker · 09 Kubernetes · 10 DevOps/GitOps/MLOps/AIOps |
 | V · IA aplicada | 11 Visión por computadora (fundamentos) · 12 Visión (aplicaciones) |
-| VI · Sistemas agénticos | 13 Ingeniería de Harness · 14 Ingeniería de Grafos |
+| VI · Sistemas agénticos | 13 Fundamentos de IA y Agentes · 14 Ingeniería de Harness · 15 Ingeniería de Grafos · 16 Jev y Modelos System One |
 
 Además incluye **10 prácticas guiadas**, glosario, rúbricas de evaluación y plantillas listas para copiar.
 
@@ -49,7 +49,7 @@ docs/
 ├── como-usar.md          # cómo estudiar / cómo impartir
 ├── guia-docente.md       # plan de sesión, tiempos, dinámicas
 ├── ruta.md               # dependencias entre módulos
-├── modulos/              # 14 módulos teóricos
+├── modulos/              # 16 módulos teóricos
 ├── practicas/            # 10 laboratorios guiados
 └── recursos/             # glosario, evaluación, plantillas, bibliografía
 ```
